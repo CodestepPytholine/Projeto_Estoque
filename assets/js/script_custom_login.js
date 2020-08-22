@@ -3,15 +3,11 @@ $(document).ready(function() {
     .form({
         fields: {
             email: {
-            identifier  : 'email',
+            identifier  : 'usuario',
                 rules: [
                     {
                         type   : 'empty',
-                        prompt : 'Por favor entre com seu e-mail'
-                    },
-                    {
-                        type   : 'email',
-                        prompt : 'Por favor entre com um e-mail válido'
+                        prompt : 'Por favor entre com seu nome de usuário'
                     }
                 ]
             },
@@ -28,6 +24,8 @@ $(document).ready(function() {
                     }
                 ]
             }
-        }
+        },
+        inline : true,
+        on     : 'blur'
     });
 });
