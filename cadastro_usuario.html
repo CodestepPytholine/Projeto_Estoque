@@ -13,8 +13,8 @@
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Cadastro Produto | Sistema Controle de Estoque - SCE</title>
-    <meta name="title" content="Cadastro Produto | Sistema Controle de Estoque - SCE" />
+    <title>Cadastro Usuário | Sistema Controle de Estoque - SCE</title>
+    <meta name="title" content="Cadastro Usuário | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
@@ -30,7 +30,7 @@
 
 <body>
     <!-- Menu Lateral -->
-    <div class="ui vertical sidebar menu">
+    <div class="ui vertical sidebar menu grey inverted">
         <div class="item">
             <div class="header">Estoque</div>
             <div class="menu">
@@ -58,7 +58,7 @@
     <div class="pusher">
         <!-- Menu Fixo -->
         <div class="ui container fluid">
-            <div class="ui top fixed menu stackable">
+            <div class="ui top fixed menu stackable grey inverted">
                 <a class="item mobileMenu">
                     <i class="sidebar icon large"></i> Menu
                 </a>
@@ -79,8 +79,10 @@
         <div class="ui grid container segment">
             <div class="row one column">
                 <div class="column">
-                    <div class="ui breadcrumb">
+                    <div class="ui breadcrumb big">
                         <a class="section" href="dashboard.html">Sistema Controle de Estoque - SCE</a>
+                        <i class="right chevron icon divider"></i>
+                        <a class="section" href="usuarios.html">Usuários</a>
                         <i class="right arrow icon divider"></i>
                         <a class="section active">Cadastro Usuário</a>
                     </div>
@@ -91,39 +93,46 @@
         <div class="ui grid container segment">
             <div class="row one column stackable">
                 <div class="column">
-                    <form action="" method="POST" class="ui form">
+                    <form action="cadastro_usuario.html" method="POST" class="ui form">
                         <h2 class="ui dividing header">Cadastro Usuário</h2>
                         <div class="fields">
-                            <div class="sixteen wide field required">
-                                <label>Nome do usuario:</label>
+                            <div class="twelve wide field required">
+                                <label>Nome completo:</label>
                                 <input type="text" placeholder="John">
                             </div>
-                            
-                        </div>
-                        <div class="fields">
-                            <div class="eight wide field required">
-                                <label>Login Usuario</label>
-                                <input type="text" placeholder="john">
-                            </div>
-                            <div class="eight wide field required">
-                                <label>Senha</label>
-                                <input type="text" placeholder="*********">
+                            <div class="four wide field required">
+                                <label>CPF:</label>
+                                <input type="text" placeholder="xxx.xxx.xxx-xx">
                             </div>
                         </div>
                         <div class="equal width fields">
                             <div class="field required">
-                                <label>CPF:</label>
-                                <input type="text" placeholder="xxx.xxx.xxx-xx">
+                                <label>Nome de usuário:</label>
+                                <input type="text" placeholder="john">
                             </div>
-                            <div class="field">
+                            <div class="field required">
+                                <label>Senha:</label>
+                                <input type="text" placeholder="*********">
+                            </div>
+                            <div class="field required">
                                 <label>Cargo:</label>
-                                <input type="text" placeholder="Mecânico">
+                                <select class="ui search dropdown">
+                                    <option value="" selected></option>
+                                    <option value="1">Mecânico</option>
+                                    <option value="2">Dono</option>
+                                    <option value="3">Atendente</option>
+                                    <option value="4">Gerente</option>
+                                </select>
                             </div>
-                           
                         </div>
                         <div>
-                            <button class="ui primary button">
-                                Salvar
+                            <button class="ui animated button grey right floated large" type="submit" tabindex="0">
+                                <div class="hidden content">
+                                    <i class="save icon"></i>
+                                </div>
+                                <div class="visible content">
+                                    Salvar
+                                </div>
                             </button>
                         </div>
                     </form>

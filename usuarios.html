@@ -13,8 +13,8 @@
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Produtos | Sistema Controle de Estoque - SCE</title>
-    <meta name="title" content="Produtos | Sistema Controle de Estoque - SCE" />
+    <title>Usuários | Sistema Controle de Estoque - SCE</title>
+    <meta name="title" content="Usuários | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
@@ -36,7 +36,6 @@
     <script src="assets/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
-    <script src="https://kit.fontawesome.com/cf6287b969.js" crossorigin="anonymous"></script>
     <!--Styles DataTable-->
     <link rel="stylesheet" href="assets/plugins/DataTables/DataTables-1.10.21/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="assets/plugins/DataTables/Responsive-2.2.5/css/responsive.semanticui.min.css">
@@ -45,7 +44,7 @@
 
 <body>
     <!-- Menu Lateral -->
-    <div class="ui vertical sidebar menu">
+    <div class="ui vertical sidebar menu grey inverted">
         <div class="item">
             <div class="header">Estoque</div>
             <div class="menu">
@@ -73,7 +72,7 @@
     <div class="pusher">
         <!-- Menu Fixo -->
         <div class="ui container fluid">
-            <div class="ui top fixed menu stackable">
+            <div class="ui top fixed menu stackable grey inverted">
                 <a class="item mobileMenu">
                     <i class="sidebar icon large"></i> Menu
                 </a>
@@ -94,7 +93,7 @@
         <div class="ui grid container segment">
             <div class="row one column">
                 <div class="column">
-                    <div class="ui breadcrumb">
+                    <div class="ui breadcrumb big">
                         <a class="section" href="dashboard.html">Sistema Controle de Estoque - SCE</a>
                         <i class="right arrow icon divider"></i>
                         <a class="section active">Usuários</a>
@@ -106,12 +105,12 @@
         <div class="ui grid container segment">
             <div class="row one column">
                 <div class="column">
-                    <table class="ui striped celled table display responsive nowrap unstackable" style="width:100%">
+                    <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
                         <thead>
                             <tr>
                                 <th>NOME</th>
-                                <th>USUARIO</th>
-                                <th>SENHA</th>
+                                <th>USUÁRIO</th>
+                                <th>CARGO</th>
                                 <th>AÇÃO</th>
                             </tr>
                         </thead>
@@ -119,49 +118,39 @@
                             <tr>
                                 <td>Gabriel Moreira</td>
                                 <td>gabriel</td>
-                                <td>1234578945</td>
-                                <td><a href="editar_cliente.html"><i class="far fa-edit"></i></a></td>
-                                <!--
+                                <td>Mecânico</td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <button class="ui button yellow">Editar</button>
+                                        <a class="ui button yellow" href="cadastro_usuario.html">Editar</a>
                                         <div class="or" data-text="OU"></div>
-                                        <button class="ui button negative">Deletar</button>
+                                        <a class="ui button negative" href="cadastro_usuario.html">Deletar</a>
                                     </div>
                                 </td>
-                                -->
                             </tr>
                             <tr>
                                 <td>Jeliel Sbalqueiro</td>
                                 <td>jeliel</td>
-                                <td>159753123</td>
-                                <td><a href="editar_cliente.html"><i class="far fa-edit"></i></a></td>
-                                <!--
+                                <td>Gerente</td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <button class="ui button yellow">Editar</button>
+                                        <a class="ui button yellow" href="cadastro_usuario.html">Editar</a>
                                         <div class="or" data-text="OU"></div>
-                                        <button class="ui button negative">Deletar</button>
+                                        <a class="ui button negative" href="cadastro_usuario.html">Deletar</a>
                                     </div>
                                 </td>
-                                -->
                             </tr>
                             <tr>
                                 <td>Lucas</td>
                                 <td>lucas</td>
-                                <td>123456789</td>
-                                <td><a href="editar_cliente.html"><i class="far fa-edit"></i></a></td>
-                                <!--
+                                <td>Atendente</td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <button class="ui button yellow">Editar</button>
+                                        <a class="ui button yellow" href="cadastro_usuario.html">Editar</a>
                                         <div class="or" data-text="OU"></div>
-                                        <button class="ui button negative">Deletar</button>
+                                        <a class="ui button negative" href="cadastro_usuario.html">Deletar</a>
                                     </div>
                                 </td>
-                                -->
                             </tr>
-                            
                         </tbody>
                     </table>
                 </div>

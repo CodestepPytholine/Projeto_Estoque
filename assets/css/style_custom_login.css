@@ -13,3 +13,7 @@ body > .grid {
 h2 {
 	color: white !important;
 }
+
+.grey {
+	background-color: #5b5b58 !important;
+}

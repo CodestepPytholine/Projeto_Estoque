@@ -10,5 +10,12 @@
 */
 .pusher {
 	padding-top: 3.2rem;
-	background-color: #DADADA !important;
+}
+
+.grey {
+	background-color: #5b5b58 !important;
+}
+
+.grey-table {
+	border-top: .2em solid #5b5b58 !important;
 }

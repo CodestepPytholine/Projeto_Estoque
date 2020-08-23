@@ -1,14 +1,14 @@
 $(document).ready(function () {
     /*
         INSTANCIA DA SIDEBAR QUE CHAMA O MENU LATERAL:
-        1-TRANSIÇÃO PRIMEIRO.
-        2-TRAVA SCROLL FORA DO MENU.
-        3-SELECIONA O EVENT DO MENU.
+        1-TRAVA SCROLL FORA DO MENU.
+        2-SELECIONA O EVENT DO MENU.
     */
     $('.ui.sidebar')
-        .first().sidebar('setting', 'transition', 'slide along')
-            .sidebar('setting', 'scrollLock', true)
-            .sidebar('attach events', '.ui .item.mobileMenu');
+        .sidebar('setting', 'scrollLock', true)
+        .sidebar('attach events', '.ui .item.mobileMenu');
+
+    $('select').dropdown();
 
     /*
     |-----------------------------------------------------|
@@ -62,19 +62,16 @@ $(document).ready(function () {
                 display: $.fn.dataTable.Responsive.display.modal( {
                     header: function ( row ) {
                         var data = row.data();
-                        return 'Detalhes de '+data[0]+' - '+data[1];
+                        return 'Detalhes de '+data[0];
                     }
                 } ),
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                    tableClass: 'ui table'
+                    tableClass: 'ui table very basic'
                 } )
             }
         },
         dom: 
             "<'ui container grid'"+
-                "<'row'"+
-                    "<'sixteen wide column'B>"+
-                ">"+
                 "<'row stackable'"+
                     "<'eight wide column'l>"+
                     "<'eight wide right aligned column'f>"+
@@ -86,9 +83,6 @@ $(document).ready(function () {
                     "<'eight wide column'i>"+
                     "<'eight wide right aligned column'p>"+
                 ">"+
-            ">",
-        buttons: [
-            'excel', 'pdf'
-        ]
+            ">"
     });
 });
