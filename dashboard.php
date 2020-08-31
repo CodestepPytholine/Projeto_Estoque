@@ -34,23 +34,23 @@
         <div class="item">
             <div class="header">Estoque</div>
             <div class="menu">
-                <a class="item" href="estoque_entrada.html">Entrada</a>
-                <a class="item" href="estoque_saida.html">Saída</a>
-                <a class="item" href="estoque_balanco.html">Balanço</a>
+                <a class="item" href="estoque_entrada.php">Entrada</a>
+                <a class="item" href="estoque_saida.php">Saída</a>
+                <a class="item" href="estoque_balanco.php">Balanço</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Produtos</div>
             <div class="menu">
-                <a class="item" href="cadastro_produto.html">Cadastro</a>
-                <a class="item" href="produtos.html">Gerenciamento</a>
+                <a class="item" href="cadastro_produto.php">Cadastro</a>
+                <a class="item" href="produtos.php">Gerenciamento</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Usuários</div>
             <div class="menu">
-                <a class="item" href="cadastro_usuario.html">Cadastro</a>
-                <a class="item" href="usuarios.html">Gerenciamento</a>
+                <a class="item" href="cadastro_usuario.php">Cadastro</a>
+                <a class="item" href="usuarios.php">Gerenciamento</a>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
                     <div class="item header">
                         <i class="user circle icon large"></i> Olá, Administrador
                     </div>
-                    <a href="login.html" class="item">
+                    <a href="index.php" class="item">
                         <i class="sign-out icon large"></i> Sair
                     </a>
                 </div>
@@ -80,7 +80,7 @@
             <div class="row one column">
                 <div class="column">
                     <div class="ui breadcrumb big">
-                        <a class="section" href="dashboard.html">Sistema Controle de Estoque - SCE</a>
+                        <a class="section" href="dashboard.php">Sistema Controle de Estoque - SCE</a>
                         <i class="right arrow icon divider"></i>
                         <a class="section active">Painel de Trabalho</a>
                     </div>

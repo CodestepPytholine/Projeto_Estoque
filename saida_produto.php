@@ -13,8 +13,8 @@
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Alteração - Entrada de Produto | Sistema Controle de Estoque - SCE</title>
-    <meta name="title" content="Alteração - Entrada de Produto | Sistema Controle de Estoque - SCE" />
+    <title>Alteração - Saída de Produto | Sistema Controle de Estoque - SCE</title>
+    <meta name="title" content="Alteração - Saída de Produto | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
@@ -34,23 +34,23 @@
         <div class="item">
             <div class="header">Estoque</div>
             <div class="menu">
-                <a class="item" href="estoque_entrada.html">Entrada</a>
-                <a class="item" href="estoque_saida.html">Saída</a>
-                <a class="item" href="estoque_balanco.html">Balanço</a>
+                <a class="item" href="estoque_entrada.php">Entrada</a>
+                <a class="item" href="estoque_saida.php">Saída</a>
+                <a class="item" href="estoque_balanco.php">Balanço</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Produtos</div>
             <div class="menu">
-                <a class="item" href="cadastro_produto.html">Cadastro</a>
-                <a class="item" href="produtos.html">Gerenciamento</a>
+                <a class="item" href="cadastro_produto.php">Cadastro</a>
+                <a class="item" href="produtos.php">Gerenciamento</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Usuários</div>
             <div class="menu">
-                <a class="item" href="cadastro_usuario.html">Cadastro</a>
-                <a class="item" href="usuarios.html">Gerenciamento</a>
+                <a class="item" href="cadastro_usuario.php">Cadastro</a>
+                <a class="item" href="usuarios.php">Gerenciamento</a>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
                     <div class="item header">
                         <i class="user circle icon large"></i> Olá, Administrador
                     </div>
-                    <a href="login.html" class="item">
+                    <a href="index.php" class="item">
                         <i class="sign-out icon large"></i> Sair
                     </a>
                 </div>
@@ -80,13 +80,13 @@
             <div class="row one column">
                 <div class="column">
                     <div class="ui breadcrumb big">
-                        <a class="section" href="dashboard.html">Sistema Controle de Estoque - SCE</a>
+                        <a class="section" href="dashboard.php">Sistema Controle de Estoque - SCE</a>
                         <i class="right chevron icon divider"></i>
-                        <a class="section" href="estoque_balanco.html">Estoque - Balanço</a>
+                        <a class="section" href="estoque_balanco.php">Estoque - Balanço</a>
                         <i class="right chevron icon divider"></i>
-                        <a class="section" href="estoque_entrada.html">Estoque - Entrada</a>
+                        <a class="section" href="estoque_saida.php">Estoque - Saída</a>
                         <i class="right arrow icon divider"></i>
-                        <a class="section active">Alteração - Entrada de Produto</a>
+                        <a class="section active">Alteração - Saída de Produto</a>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
             <div class="row one column stackable">
                 <div class="column">
                     <form action="" method="POST" class="ui form">
-                        <h2 class="ui dividing header">Entrada de Produto</h2>
+                        <h2 class="ui dividing header">Saída de Produto</h2>
                         <div class="fields">
                             <div class="eight wide field required">
                                 <label>Nome do produto:</label>
@@ -116,11 +116,11 @@
                                 <label>Marca:</label>
                                 <input type="text" value="WD" disabled>
                             </div>
-                            <div class="field">
+                            <div class="field required">
                                 <label>Modelo:</label>
                                 <input type="text" value="WD-40" disabled>
                             </div>
-                            <div class="field">
+                            <div class="field required">
                                 <label>Quantidade em estoque:</label>
                                 <input type="text" value="10" disabled>
                             </div>
@@ -138,7 +138,7 @@
                         </div>
                         <div class="fields">
                             <div class="four wide field required">
-                                <label>Quantidade entrada:</label>
+                                <label>Quantidade saída:</label>
                                 <input type="text">
                             </div>
                         </div>

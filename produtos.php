@@ -13,8 +13,8 @@
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Estoque - Entrada | Sistema Controle de Estoque - SCE</title>
-    <meta name="title" content="Estoque - Entrada | Sistema Controle de Estoque - SCE" />
+    <title>Produtos | Sistema Controle de Estoque - SCE</title>
+    <meta name="title" content="Produtos | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
@@ -36,6 +36,7 @@
     <script src="assets/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="https://kit.fontawesome.com/cf6287b969.js" crossorigin="anonymous"></script>
     <!--Styles DataTable-->
     <link rel="stylesheet" href="assets/plugins/DataTables/DataTables-1.10.21/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="assets/plugins/DataTables/Responsive-2.2.5/css/responsive.semanticui.min.css">
@@ -48,23 +49,23 @@
         <div class="item">
             <div class="header">Estoque</div>
             <div class="menu">
-                <a class="item" href="estoque_entrada.html">Entrada</a>
-                <a class="item" href="estoque_saida.html">Saída</a>
-                <a class="item" href="estoque_balanco.html">Balanço</a>
+                <a class="item" href="estoque_entrada.php">Entrada</a>
+                <a class="item" href="estoque_saida.php">Saída</a>
+                <a class="item" href="estoque_balanco.php">Balanço</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Produtos</div>
             <div class="menu">
-                <a class="item" href="cadastro_produto.html">Cadastro</a>
-                <a class="item" href="produtos.html">Gerenciamento</a>
+                <a class="item" href="cadastro_produto.php">Cadastro</a>
+                <a class="item" href="produtos.php">Gerenciamento</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Usuários</div>
             <div class="menu">
-                <a class="item" href="cadastro_usuario.html">Cadastro</a>
-                <a class="item" href="usuarios.html">Gerenciamento</a>
+                <a class="item" href="cadastro_usuario.php">Cadastro</a>
+                <a class="item" href="usuarios.php">Gerenciamento</a>
             </div>
         </div>
     </div>
@@ -83,7 +84,7 @@
                     <div class="item header">
                         <i class="user circle icon large"></i> Olá, Administrador
                     </div>
-                    <a href="login.html" class="item">
+                    <a href="index.php" class="item">
                         <i class="sign-out icon large"></i> Sair
                     </a>
                 </div>
@@ -94,11 +95,9 @@
             <div class="row one column">
                 <div class="column">
                     <div class="ui breadcrumb big">
-                        <a class="section" href="dashboard.html">Sistema Controle de Estoque - SCE</a>
-                        <i class="right chevron icon divider"></i>
-                        <a class="section" href="estoque_balanco.html">Estoque - Balanço</a>
+                        <a class="section" href="dashboard.php">Sistema Controle de Estoque - SCE</a>
                         <i class="right arrow icon divider"></i>
-                        <a class="section active">Estoque - Entrada</a>
+                        <a class="section active">Produtos</a>
                     </div>
                 </div>
             </div>
@@ -107,58 +106,57 @@
         <div class="ui grid container segment">
             <div class="row one column">
                 <div class="column">
-                    <h2 class="ui dividing header">Estoque - Entrada</h2>
                     <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
                         <thead>
                             <tr>
                                 <th>PRODUTO</th>
+                                <th>MARCA</th>
+                                <th>MODELO</th>
+                                <th>CONDIÇÃO</th>
                                 <th>QUANTIDADE</th>
-                                <th>VALOR UNIDADE</th>
-                                <th>VALOR FINAL</th>
-                                <th>CATEGORIA</th>
                                 <th>AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Cabeçote</td>
+                                <td>Teste</td>
+                                <td>Teste</td>
+                                <td>Novo</td>
                                 <td>10</td>
-                                <td>250,00</td>
-                                <td>2.500,00</td>
-                                <td>Freio</td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <a class="ui button yellow" href="entrada_produto.html">Editar</a>
+                                        <a class="ui button yellow" href="cadastro_produto.php">Editar</a>
                                         <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="entrada_produto.html">Deletar</a>
+                                        <a class="ui button negative" href="cadastro_produto.php">Deletar</a>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Mangueta</td>
-                                <td>50</td>
-                                <td>50,00</td>
-                                <td>2.500,00</td>
-                                <td>Borracharia</td>
+                                <td>Teste</td>
+                                <td>Teste</td>
+                                <td>Usado</td>
+                                <td>25</td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <a class="ui button yellow" href="entrada_produto.html">Editar</a>
+                                        <a class="ui button yellow" href="cadastro_produto.php">Editar</a>
                                         <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="entrada_produto.html">Deletar</a>
+                                        <a class="ui button negative" href="cadastro_produto.php">Deletar</a>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Pistão</td>
+                                <td>Teste</td>
+                                <td>Teste</td>
+                                <td>Novo</td>
                                 <td>75</td>
-                                <td>175,00</td>
-                                <td>2.500,00</td>
-                                <td>Solda</td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <a class="ui button yellow" href="entrada_produto.html">Editar</a>
+                                        <a class="ui button yellow" href="cadastro_produto.php">Editar</a>
                                         <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="entrada_produto.html">Deletar</a>
+                                        <a class="ui button negative" href="cadastro_produto.php">Deletar</a>
                                     </div>
                                 </td>
                             </tr>

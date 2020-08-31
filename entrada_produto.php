@@ -13,8 +13,8 @@
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Cadastro Usuário | Sistema Controle de Estoque - SCE</title>
-    <meta name="title" content="Cadastro Usuário | Sistema Controle de Estoque - SCE" />
+    <title>Alteração - Entrada de Produto | Sistema Controle de Estoque - SCE</title>
+    <meta name="title" content="Alteração - Entrada de Produto | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
@@ -34,23 +34,23 @@
         <div class="item">
             <div class="header">Estoque</div>
             <div class="menu">
-                <a class="item" href="estoque_entrada.html">Entrada</a>
-                <a class="item" href="estoque_saida.html">Saída</a>
-                <a class="item" href="estoque_balanco.html">Balanço</a>
+                <a class="item" href="estoque_entrada.php">Entrada</a>
+                <a class="item" href="estoque_saida.php">Saída</a>
+                <a class="item" href="estoque_balanco.php">Balanço</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Produtos</div>
             <div class="menu">
-                <a class="item" href="cadastro_produto.html">Cadastro</a>
-                <a class="item" href="produtos.html">Gerenciamento</a>
+                <a class="item" href="cadastro_produto.php">Cadastro</a>
+                <a class="item" href="produtos.php">Gerenciamento</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Usuários</div>
             <div class="menu">
-                <a class="item" href="cadastro_usuario.html">Cadastro</a>
-                <a class="item" href="usuarios.html">Gerenciamento</a>
+                <a class="item" href="cadastro_usuario.php">Cadastro</a>
+                <a class="item" href="usuarios.php">Gerenciamento</a>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
                     <div class="item header">
                         <i class="user circle icon large"></i> Olá, Administrador
                     </div>
-                    <a href="login.html" class="item">
+                    <a href="index.php" class="item">
                         <i class="sign-out icon large"></i> Sair
                     </a>
                 </div>
@@ -80,11 +80,13 @@
             <div class="row one column">
                 <div class="column">
                     <div class="ui breadcrumb big">
-                        <a class="section" href="dashboard.html">Sistema Controle de Estoque - SCE</a>
+                        <a class="section" href="dashboard.php">Sistema Controle de Estoque - SCE</a>
                         <i class="right chevron icon divider"></i>
-                        <a class="section" href="usuarios.html">Usuários</a>
+                        <a class="section" href="estoque_balanco.php">Estoque - Balanço</a>
+                        <i class="right chevron icon divider"></i>
+                        <a class="section" href="estoque_entrada.php">Estoque - Entrada</a>
                         <i class="right arrow icon divider"></i>
-                        <a class="section active">Cadastro Usuário</a>
+                        <a class="section active">Alteração - Entrada de Produto</a>
                     </div>
                 </div>
             </div>
@@ -93,36 +95,51 @@
         <div class="ui grid container segment">
             <div class="row one column stackable">
                 <div class="column">
-                    <form action="cadastro_usuario.html" method="POST" class="ui form">
-                        <h2 class="ui dividing header">Cadastro Usuário</h2>
+                    <form action="" method="POST" class="ui form">
+                        <h2 class="ui dividing header">Entrada de Produto</h2>
                         <div class="fields">
-                            <div class="twelve wide field required">
-                                <label>Nome completo:</label>
-                                <input type="text" placeholder="John">
+                            <div class="eight wide field required">
+                                <label>Nome do produto:</label>
+                                <input type="text" value="Oléo lubrificante" disabled>
                             </div>
                             <div class="four wide field required">
-                                <label>CPF:</label>
-                                <input type="text" placeholder="xxx.xxx.xxx-xx">
+                                <label>Preço pago:</label>
+                                <input type="text" value="15,00" disabled>
+                            </div>
+                            <div class="four wide field required">
+                                <label>Tamanho:</label>
+                                <input type="text" value="Médio" disabled>
                             </div>
                         </div>
                         <div class="equal width fields">
                             <div class="field required">
-                                <label>Nome de usuário:</label>
-                                <input type="text" placeholder="john">
+                                <label>Marca:</label>
+                                <input type="text" value="WD" disabled>
+                            </div>
+                            <div class="field">
+                                <label>Modelo:</label>
+                                <input type="text" value="WD-40" disabled>
+                            </div>
+                            <div class="field">
+                                <label>Quantidade em estoque:</label>
+                                <input type="text" value="10" disabled>
                             </div>
                             <div class="field required">
-                                <label>Senha:</label>
-                                <input type="text" placeholder="*********">
+                                <label>Categoria:</label>
+                                <input type="text" value="Freio" disabled>
                             </div>
                             <div class="field required">
-                                <label>Cargo:</label>
-                                <select class="ui search dropdown">
-                                    <option value="" selected></option>
-                                    <option value="1">Mecânico</option>
-                                    <option value="2">Dono</option>
-                                    <option value="3">Atendente</option>
-                                    <option value="4">Gerente</option>
+                                <label>Condição:</label>
+                                <select name="" id="" disabled>
+                                    <option value="novo">Novo</option>
+                                    <option value="usado" selected>Usado</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="four wide field required">
+                                <label>Quantidade entrada:</label>
+                                <input type="text">
                             </div>
                         </div>
                         <div>

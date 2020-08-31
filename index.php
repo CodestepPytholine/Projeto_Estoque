@@ -1,3 +1,6 @@
+<?php
+    require_once 'connection.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +38,7 @@
                 Área Restrita | Sistema Controle de Estoque - SCE
             </div>
         </h2>
-        <form class="ui large form" action="dashboard.html">
+        <form class="ui large form" action="dashboard.php">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">

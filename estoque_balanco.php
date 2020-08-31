@@ -13,8 +13,8 @@
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Estoque - Saída | Sistema Controle de Estoque - SCE</title>
-    <meta name="title" content="Estoque - Saída | Sistema Controle de Estoque - SCE" />
+    <title>Estoque Balanço | Sistema Controle de Estoque - SCE</title>
+    <meta name="title" content="Estoque Balanço | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
@@ -48,23 +48,23 @@
         <div class="item">
             <div class="header">Estoque</div>
             <div class="menu">
-                <a class="item" href="estoque_entrada.html">Entrada</a>
-                <a class="item" href="estoque_saida.html">Saída</a>
-                <a class="item" href="estoque_balanco.html">Balanço</a>
+                <a class="item" href="estoque_entrada.php">Entrada</a>
+                <a class="item" href="estoque_saida.php">Saída</a>
+                <a class="item" href="estoque_balanco.php">Balanço</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Produtos</div>
             <div class="menu">
-                <a class="item" href="cadastro_produto.html">Cadastro</a>
-                <a class="item" href="produtos.html">Gerenciamento</a>
+                <a class="item" href="cadastro_produto.php">Cadastro</a>
+                <a class="item" href="produtos.php">Gerenciamento</a>
             </div>
         </div>
         <div class="item">
             <div class="header">Usuários</div>
             <div class="menu">
-                <a class="item" href="cadastro_usuario.html">Cadastro</a>
-                <a class="item" href="usuarios.html">Gerenciamento</a>
+                <a class="item" href="cadastro_usuario.php">Cadastro</a>
+                <a class="item" href="usuarios.php">Gerenciamento</a>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
                     <div class="item header">
                         <i class="user circle icon large"></i> Olá, Administrador
                     </div>
-                    <a href="login.html" class="item">
+                    <a href="index.php" class="item">
                         <i class="sign-out icon large"></i> Sair
                     </a>
                 </div>
@@ -94,20 +94,18 @@
             <div class="row one column">
                 <div class="column">
                     <div class="ui breadcrumb big">
-                        <a class="section" href="dashboard.html">Sistema Controle de Estoque - SCE</a>
-                        <i class="right chevron icon divider"></i>
-                        <a class="section" href="estoque_balanco.html">Estoque - Balanço</a>
+                        <a class="section" href="dashboard.php">Sistema Controle de Estoque - SCE</a>
                         <i class="right arrow icon divider"></i>
-                        <a class="section active">Estoque - Saída</a>
+                        <a class="section active">Estoque Balanço</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Funcionalidades/Funções -->
         <div class="ui grid container segment">
-            <div class="row one column">
+            <div class="row one column stackable">
                 <div class="column">
-                    <h2 class="ui dividing header">Estoque - Saída</h2>
+                    <h2 class="ui dividing header">Estoque - Balanço</h2>
                     <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
                         <thead>
                             <tr>
@@ -116,7 +114,7 @@
                                 <th>VALOR UNIDADE</th>
                                 <th>VALOR FINAL</th>
                                 <th>CATEGORIA</th>
-                                <th>AÇÃO</th>
+                                <th>SITUAÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,42 +122,42 @@
                                 <td>Cabeçote</td>
                                 <td>10</td>
                                 <td>250,00</td>
-                                <td>2500,00</td>
+                                <td>2.500,00</td>
                                 <td>Freio</td>
                                 <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="saida_produto.html">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="saida_produto.html">Deletar</a>
-                                    </div>
+                                    <i class="big icons">
+                                        Entrou
+                                        <i class="box icon"></i>
+                                        <i class="bottom right corner add icon green"></i>
+                                    </i>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Mangueta</td>
                                 <td>50</td>
                                 <td>50,00</td>
-                                <td>2500,00</td>
+                                <td>2.500,00</td>
                                 <td>Borracharia</td>
                                 <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="saida_produto.html">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="saida_produto.html">Deletar</a>
-                                    </div>
+                                    <i class="big icons">
+                                        Saiu
+                                        <i class="box icon"></i>
+                                        <i class="bottom right corner remove icon red"></i>
+                                    </i>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Pistão</td>
                                 <td>75</td>
                                 <td>175,00</td>
-                                <td>2500,00</td>
+                                <td>2.500,00</td>
                                 <td>Solda</td>
                                 <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="saida_produto.html">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="saida_produto.html">Deletar</a>
-                                    </div>
+                                    <i class="big icons">
+                                        Entrou
+                                        <i class="box icon"></i>
+                                        <i class="bottom right corner add icon green"></i>
+                                    </i>
                                 </td>
                             </tr>
                         </tbody>
