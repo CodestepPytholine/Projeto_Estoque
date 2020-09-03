@@ -1,3 +1,38 @@
+<?php 
+include("php/db.class.php");
+include("php/dbconnect.php");
+
+    $objDB = new db();
+    $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+
+    $strTable = "usuario";
+    $SQL = "*";
+    $where = "";
+	$objDB->dbSelectNo($strTable, $SQL);
+	
+	$numTotal = mysqli_num_rows($objDB->resultado);
+	if ($numTotal > 0) {
+		for ($i = 0; $i < $numTotal; $i++) {
+			$nome =  $objDB->mysqli_result($objDB->resultado, $i, "nome");
+			$username =  $objDB->mysqli_result($objDB->resultado, $i, "nome");
+            $cargo =  $objDB->mysqli_result($objDB->resultado, $i, "nome");	
+            $table .= "<tr>
+                            <td>$nome</td>
+                            <td>$username</td>
+                            <td>$cargo</td>
+                            <td class=\"center aligned\">
+                                <div class=\"ui buttons\">
+                                    <a class=\"ui button yellow\" href=\"cadastro_usuario.php\">Editar</a>
+                                    <div class=\"or\" data-text=\"OU\"></div>
+                                    <a class=\"ui button negative\" href=\"cadastro_usuario.php\">Deletar</a>
+                                </div>
+                            </td>
+                        </tr>";			
+        }
+       
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -114,43 +149,10 @@
                                 <th>AÇÃO</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Gabriel Moreira</td>
-                                <td>gabriel</td>
-                                <td>Mecânico</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_usuario.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_usuario.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jeliel Sbalqueiro</td>
-                                <td>jeliel</td>
-                                <td>Gerente</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_usuario.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_usuario.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lucas</td>
-                                <td>lucas</td>
-                                <td>Atendente</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_usuario.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_usuario.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody>  
+                           <?php 
+                            echo $table;
+                           ?>
                         </tbody>
                     </table>
                 </div>

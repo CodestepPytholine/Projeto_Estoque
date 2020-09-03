@@ -93,35 +93,35 @@
         <div class="ui grid container segment">
             <div class="row one column stackable">
                 <div class="column">
-                    <form action="cadastro_usuario.php" method="POST" class="ui form">
+                    <form action="backend/cadastrar_usuario.php" method="POST" class="ui form">
                         <h2 class="ui dividing header">Cadastro Usuário</h2>
                         <div class="fields">
                             <div class="twelve wide field required">
                                 <label>Nome completo:</label>
-                                <input type="text" placeholder="John">
+                                <input type="text" name="nome" placeholder="John">
                             </div>
                             <div class="four wide field required">
                                 <label>CPF:</label>
-                                <input type="text" placeholder="xxx.xxx.xxx-xx">
+                                <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx">
                             </div>
                         </div>
                         <div class="equal width fields">
                             <div class="field required">
                                 <label>Nome de usuário:</label>
-                                <input type="text" placeholder="john">
+                                <input type="text" name="username" placeholder="john">
                             </div>
                             <div class="field required">
                                 <label>Senha:</label>
-                                <input type="text" placeholder="*********">
+                                <input type="text" name="password" placeholder="*********">
                             </div>
                             <div class="field required">
                                 <label>Cargo:</label>
-                                <select class="ui search dropdown">
+                                <select class="ui search dropdown" name="cargo">
                                     <option value="" selected></option>
-                                    <option value="1">Mecânico</option>
-                                    <option value="2">Dono</option>
+                                    <option value="1">Dono</option>
+                                    <option value="2">Gerente</option>
                                     <option value="3">Atendente</option>
-                                    <option value="4">Gerente</option>
+                                    <option value="4">Mecânico</option>
                                 </select>
                             </div>
                         </div>
