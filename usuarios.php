@@ -1,3 +1,44 @@
+<?php 
+include("php/db.class.php");
+include("php/dbconnect.php");
+
+    $objDB = new db();
+    $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+
+    $strTable = "usuario";
+    $SQL = "*";
+    $where = " LEFT JOIN perfil on perfil.id_perfil = usuario.id_perfil";
+	$objDB->dbSelect($strTable, $SQL, $where);
+	$numTotal = mysqli_num_rows($objDB->resultado);
+	if ($numTotal > 0) {
+        $table = "";
+		for ($i = 0; $i < $numTotal; $i++) {
+            $id = $objDB->mysqli_result($objDB->resultado, $i, "id_usuario");
+			$nome =  $objDB->mysqli_result($objDB->resultado, $i, "nome");
+			$username =  $objDB->mysqli_result($objDB->resultado, $i, "login");
+            $cargo =  $objDB->mysqli_result($objDB->resultado, $i, "nome_perfil");	
+            $hdID = base64_encode($id);
+            
+            $table .= "<tr>
+                            <td>$nome</td>
+                            <td>$username</td>
+                            <td>$cargo</td>
+                            <td class=\"center aligned\">
+                                <div class=\"ui buttons\">
+                                    <form action=\"cadastro_usuario.php\" method=\"POST\" id=\"editUser\">
+                                        <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                                    </form>                                    
+                                    <a class=\"ui button yellow\" href=\"#\" onclick=\"editUser(); return false;\">Editar</a>
+                                    <div class=\"or\" data-text=\"OU\"></div>
+                                    <a class=\"ui button negative\" href=\"cadastro_usuario.php\">Deletar</a>
+                                </div>
+                            </td>
+                        </tr>";			
+        }
+       
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -36,6 +77,7 @@
     <script src="assets/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="scripts/script.js"></script>
     <!--Styles DataTable-->
     <link rel="stylesheet" href="assets/plugins/DataTables/DataTables-1.10.21/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="assets/plugins/DataTables/Responsive-2.2.5/css/responsive.semanticui.min.css">
@@ -68,6 +110,7 @@
             </div>
         </div>
     </div>
+    
     <!-- Conteudo da Página -->
     <div class="pusher">
         <!-- Menu Fixo -->
@@ -114,43 +157,10 @@
                                 <th>AÇÃO</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Gabriel Moreira</td>
-                                <td>gabriel</td>
-                                <td>Mecânico</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_usuario.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_usuario.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jeliel Sbalqueiro</td>
-                                <td>jeliel</td>
-                                <td>Gerente</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_usuario.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_usuario.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lucas</td>
-                                <td>lucas</td>
-                                <td>Atendente</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_usuario.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_usuario.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody>  
+                           <?php 
+                            echo $table;
+                           ?>
                         </tbody>
                     </table>
                 </div>
@@ -158,5 +168,9 @@
         </div>
     </div>
 </body>
-
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous">
+</script>
 </html>
