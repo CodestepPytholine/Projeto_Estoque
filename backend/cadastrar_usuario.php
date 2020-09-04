@@ -16,12 +16,13 @@ $password = $_POST['password'];
 $cargo = $_POST['cargo'];
 
 
-$strTable = "usuario (nome, login, senha, status_usuario, id_perfil) ";
+$strTable = "usuario (nome, login, senha, status_usuario, id_perfil, cpf_usuario) ";
 $strSQL = " ('$nome',
             '$username',
             '$password',
             '1',
-            '$cargo') ";
+            '$cargo',
+            '$cpf') ";
 
 $objDB->dbInsert($strTable, $strSQL);
 

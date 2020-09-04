@@ -25,7 +25,7 @@ class db{
 	}
 	
 	function dbSelect($tab,$campos,$condicao){
-		$this->sql = "select $campos from $tab where $condicao";
+		$this->sql = "select $campos from $tab $condicao";
 		$this->resultado =  mysqli_query($this->conexao, $this->sql) or die('Error querying database. :'.$this->sql);
 	}
 	function dbSelectNo($tab,$campos){

@@ -1,3 +1,27 @@
+<?php 
+ include("php/db.class.php");
+ include("php/dbconnect.php");
+ 
+$objDB = new db();
+$objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+ 
+    if(isset($_POST) ){
+    $id = base64_decode($_POST['id']); 
+            $strTable = "usuario";
+            $SQL = "*";
+            $where = "LEFT JOIN perfil on perfil.id_perfil = usuario.id_perfil WHERE id_usuario = '$id' ";
+            $objDB->dbSelect($strTable, $SQL, $where);
+            $numTotal = mysqli_num_rows($objDB->resultado);
+            if ($numTotal > 0) {
+                $name =  $objDB->mysqli_result($objDB->resultado, 0, "nome");
+                $cpf = $objDB->mysqli_result($objDB->resultado, 0, "cpf_usuario");
+                $username =  $objDB->mysqli_result($objDB->resultado, 0, "login");
+                $password = $objDB->mysqli_result($objDB->resultado, 0, "senha");
+                $cargo =  $objDB->mysqli_result($objDB->resultado, 0, "id_perfil");	
+            }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -94,34 +118,35 @@
             <div class="row one column stackable">
                 <div class="column">
                     <form action="backend/cadastrar_usuario.php" method="POST" class="ui form">
-                        <h2 class="ui dividing header">Cadastro Usuário</h2>
+                        <h2 class="ui dividing header"><?=($id)?'Atualização':'Cadastro'?> de Usuário</h2>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <div class="fields">
                             <div class="twelve wide field required">
                                 <label>Nome completo:</label>
-                                <input type="text" name="nome" placeholder="John">
+                                <input type="text" name="nome" placeholder="John" value="<?=($name)?$name:''?>">
                             </div>
                             <div class="four wide field required">
                                 <label>CPF:</label>
-                                <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx">
+                                <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value="<?=($cpf)?$cpf:''?>">
                             </div>
                         </div>
                         <div class="equal width fields">
                             <div class="field required">
                                 <label>Nome de usuário:</label>
-                                <input type="text" name="username" placeholder="john">
+                                <input type="text" name="username" placeholder="john" value="<?=($username)?$username:''?>">
                             </div>
                             <div class="field required">
                                 <label>Senha:</label>
-                                <input type="text" name="password" placeholder="*********">
+                                <input type="text" name="password" placeholder="*********" value="<?=($password)?$password:''?>">
                             </div>
                             <div class="field required">
                                 <label>Cargo:</label>
                                 <select class="ui search dropdown" name="cargo">
-                                    <option value="" selected></option>
-                                    <option value="1">Dono</option>
-                                    <option value="2">Gerente</option>
-                                    <option value="3">Atendente</option>
-                                    <option value="4">Mecânico</option>
+                                    <option value="" <?=($cargo == '')?'selected':''?>></option>
+                                    <option value="1" <?=($cargo == '1')?'selected':''?>>Dono</option>
+                                    <option value="2" <?=($cargo == '2')?'selected':''?>>Gerente</option>
+                                    <option value="3" <?=($cargo == '3')?'selected':''?>>Atendente</option>
+                                    <option value="4" <?=($cargo == '4')?'selected':''?>>Mecânico</option>
                                 </select>
                             </div>
                         </div>
