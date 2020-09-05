@@ -1,16 +1,20 @@
-<?php 
+<?php
 
 extract($_POST);
-
-include("../php/db.class.php");
-include("../php/dbconnect.php"); 
-
+/*
+    INCLUDES INICIAIS.
+*/
+include("php/db.class.php");
+include("php/dbconnect.php");
+/*
+    CONEXÃO COM A BASE DE DADOS.
+*/
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
 $retorno = "";
 
-if (isset($_POST['id']) && !empty($_POST['id'])){
- 
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+
     $id = $_POST['id'];
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
@@ -36,14 +40,13 @@ if (isset($_POST['id']) && !empty($_POST['id'])){
     $strWhere = "id_produto = '$id' ";
     $objDB->dbUpdate($strTable, $strSQL, $strWhere);
 
-    if($objDB->resultado == 1){
+    if ($objDB->resultado == 1) {
         $retorno .= "Atualização realizada com sucesso!";
-    }else{
+    } else {
         $retorno .= " Erro de Atualização.";
     }
-
 } else {
-  
+
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
     $tamanho = $_POST['tamanho'];
@@ -65,16 +68,13 @@ if (isset($_POST['id']) && !empty($_POST['id'])){
                 '$marca',
                 '$cat',
                 '$cond') ";
-    
+
     $objDB->dbInsert($strTable, $strSQL);
-        
-        if($objDB->resultado == 1){
-            $retorno .= "Registro realizado com sucesso!";
-        }else{
-            $retorno .= " Erro de Cadastro.";
-        }
-        
+
+    if ($objDB->resultado == 1) {
+        $retorno .= "Registro realizado com sucesso!";
+    } else {
+        $retorno .= " Erro de Cadastro.";
+    }
 }
 exit("<script> alert('$retorno');   window.location = document.referrer; </script>");
-
-?>

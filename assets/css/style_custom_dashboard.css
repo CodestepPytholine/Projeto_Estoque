@@ -20,8 +20,16 @@
 	border-top: .2em solid #5b5b58 !important;
 }
 
+.checkbox {
+	padding-top: 2.2em;
+}
+
 @media only screen and (max-width: 768px) {
 	#displayMobile {
 		display: none;
+	}
+
+	.checkbox {
+		padding-bottom: 2.2em;
 	}
 }

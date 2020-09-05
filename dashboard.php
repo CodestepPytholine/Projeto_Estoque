@@ -1,3 +1,16 @@
+<?php
+/*
+    INCLUDES INICIAIS.
+*/
+include("menu.php");
+include("php/db.class.php");
+include("php/dbconnect.php");
+/*
+    CONEXÃO COM A BASE DE DADOS.
+*/
+$objDB = new db();
+$objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,72 +42,25 @@
 </head>
 
 <body>
-    <!-- Menu Lateral -->
-    <div class="ui vertical sidebar menu grey inverted">
-        <div class="item">
-            <div class="header">Estoque</div>
-            <div class="menu">
-                <a class="item" href="estoque_entrada.php">Entrada</a>
-                <a class="item" href="estoque_saida.php">Saída</a>
-                <a class="item" href="estoque_balanco.php">Balanço</a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="header">Produtos</div>
-            <div class="menu">
-                <a class="item" href="cadastro_produto.php">Cadastro</a>
-                <a class="item" href="produtos.php">Gerenciamento</a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="header">Usuários</div>
-            <div class="menu">
-                <a class="item" href="cadastro_usuario.php">Cadastro</a>
-                <a class="item" href="usuarios.php">Gerenciamento</a>
+    <!-- PAINEL DE NAVEGAÇÃO EM TRILHA -->
+    <div class="ui grid container segment">
+        <div class="row one column">
+            <div class="column">
+                <div class="ui breadcrumb big">
+                    <a class="section active" href="dashboard.php">Dashboard</a>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Conteudo da Página -->
-    <div class="pusher">
-        <!-- Menu Fixo -->
-        <div class="ui container fluid">
-            <div class="ui top fixed menu stackable grey inverted">
-                <a class="item mobileMenu">
-                    <i class="sidebar icon large"></i> Menu
-                </a>
-                <div id="displayMobile" class="item header">
-                    <i class="dolly flatbed icon large"></i> Sistema Controle de Estoque
-                </div>
-                <div class="menu right">
-                    <div id="displayMobile" class="item header">
-                        <i class="user circle icon large"></i> Olá, Administrador
-                    </div>
-                    <a href="index.php" class="item">
-                        <i class="sign-out icon large"></i> Sair
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- Painel de Navegação de Trilha -->
-        <div class="ui grid container segment">
-            <div class="row one column">
-                <div class="column">
-                    <div class="ui breadcrumb big">
-                        <a class="section" href="dashboard.php">Sistema Controle de Estoque - SCE</a>
-                        <i class="right arrow icon divider"></i>
-                        <a class="section active">Painel de Trabalho</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Funcionalidades/Funções -->
-        <div class="ui grid container segment">
-            <div class="row one column stackable">
-                <div class="column">
+    <!-- FUNCÕES -->
+    <div class="ui grid container segment">
+        <div class="row one column stackable">
+            <div class="column">
 
-                </div>
             </div>
         </div>
+    </div>
+    <!-- DIV QUE FECHA O TEMPLATE 'MENU' -->
     </div>
 </body>
 
