@@ -4,9 +4,8 @@
  
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
- 
-    if(isset($_POST) ){
-    $id = base64_decode($_POST['id']); 
+    if(isset($_POST) && !empty($_POST)){
+            $id = base64_decode($_POST['id']); 
             $strTable = "usuario";
             $SQL = "*";
             $where = "LEFT JOIN perfil on perfil.id_perfil = usuario.id_perfil WHERE id_usuario = '$id' ";
@@ -118,35 +117,35 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
             <div class="row one column stackable">
                 <div class="column">
                     <form action="backend/cadastrar_usuario.php" method="POST" class="ui form">
-                        <h2 class="ui dividing header"><?=($id)?'Atualização':'Cadastro'?> de Usuário</h2>
+                        <h2 class="ui dividing header"><?=(isset($id) && !empty($id))?'Atualização':'Cadastro'?> de Usuário</h2>
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <div class="fields">
                             <div class="twelve wide field required">
                                 <label>Nome completo:</label>
-                                <input type="text" name="nome" placeholder="John" value="<?=($name)?$name:''?>">
+                                <input type="text" name="nome" placeholder="John" value="<?=(isset($name))?$name:''?>">
                             </div>
                             <div class="four wide field required">
                                 <label>CPF:</label>
-                                <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value="<?=($cpf)?$cpf:''?>">
+                                <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value="<?=(isset($cpf))?$cpf:''?>">
                             </div>
                         </div>
                         <div class="equal width fields">
                             <div class="field required">
                                 <label>Nome de usuário:</label>
-                                <input type="text" name="username" placeholder="john" value="<?=($username)?$username:''?>">
+                                <input type="text" name="username" placeholder="john" value="<?=(isset($username))?$username:''?>">
                             </div>
                             <div class="field required">
                                 <label>Senha:</label>
-                                <input type="text" name="password" placeholder="*********" value="<?=($password)?$password:''?>">
+                                <input type="text" name="password" placeholder="*********" value="<?=(isset($password))?$password:''?>">
                             </div>
                             <div class="field required">
                                 <label>Cargo:</label>
                                 <select class="ui search dropdown" name="cargo">
-                                    <option value="" <?=($cargo == '')?'selected':''?>></option>
-                                    <option value="1" <?=($cargo == '1')?'selected':''?>>Dono</option>
-                                    <option value="2" <?=($cargo == '2')?'selected':''?>>Gerente</option>
-                                    <option value="3" <?=($cargo == '3')?'selected':''?>>Atendente</option>
-                                    <option value="4" <?=($cargo == '4')?'selected':''?>>Mecânico</option>
+                                    <option value="" <?=(isset($cargo) == '')?'selected':''?>></option>
+                                    <option value="1" <?=(isset($cargo)== '1')?'selected':''?>>Dono</option>
+                                    <option value="2" <?=(isset($cargo) == '2')?'selected':''?>>Gerente</option>
+                                    <option value="3" <?=(isset($cargo) == '3')?'selected':''?>>Atendente</option>
+                                    <option value="4" <?=(isset($cargo) == '4')?'selected':''?>>Mecânico</option>
                                 </select>
                             </div>
                         </div>
