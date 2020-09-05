@@ -1,3 +1,48 @@
+<?php 
+include("menu.php");
+include("php/db.class.php");
+include("php/dbconnect.php");
+
+    $objDB = new db();
+    $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+
+    $strTable = "produto";
+    $SQL = "*";
+	$objDB->dbSelectNo($strTable, $SQL);
+	$numTotal = mysqli_num_rows($objDB->resultado);
+	if ($numTotal > 0) {
+        $table = "";
+		for ($i = 0; $i < $numTotal; $i++) {
+            $id = $objDB->mysqli_result($objDB->resultado, $i, "id_produto");
+			$nome =  $objDB->mysqli_result($objDB->resultado, $i, "nome_produto");
+			$qtd =  $objDB->mysqli_result($objDB->resultado, $i, "qtd_produto");	
+            $marca =  $objDB->mysqli_result($objDB->resultado, $i, "marca_produto");	
+            $cond =  $objDB->mysqli_result($objDB->resultado, $i, "condicao_produto");	
+            $cat =  $objDB->mysqli_result($objDB->resultado, $i, "categoria_produto");	
+            $hdID = base64_encode($id);
+            
+            $table .= 
+            "<tr>
+                <td>$nome</td>
+                <td>$marca</td>
+                <td>$cond</td>
+                <td>$cat</td>
+                <td>$qtd</td>
+                <td class=\"center aligned\">
+                    <div class=\"ui buttons\">
+                        <form action=\"cadastro_produto.php\" method=\"POST\" id=\"editUser\">
+                            <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                            <button class=\"ui button yellow submit\">Editar</button>
+                        </form>       
+                        <div class=\"or\" data-text=\"OU\"></div>
+                        <a class=\"ui button negative\" href=\"cadastro_produto.php\">Deletar</a>
+                    </div>
+                </td>
+            </tr>";		
+        }
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -36,7 +81,6 @@
     <script src="assets/plugins/DataTables/JSZip-2.5.0/jszip.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
     <script src="assets/plugins/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
-    <script src="https://kit.fontawesome.com/cf6287b969.js" crossorigin="anonymous"></script>
     <!--Styles DataTable-->
     <link rel="stylesheet" href="assets/plugins/DataTables/DataTables-1.10.21/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="assets/plugins/DataTables/Responsive-2.2.5/css/responsive.semanticui.min.css">
@@ -44,127 +88,27 @@
 </head>
 
 <body>
-    <!-- Menu Lateral -->
-    <div class="ui vertical sidebar menu grey inverted">
-        <div class="item">
-            <div class="header">Estoque</div>
-            <div class="menu">
-                <a class="item" href="estoque_entrada.php">Entrada</a>
-                <a class="item" href="estoque_saida.php">Saída</a>
-                <a class="item" href="estoque_balanco.php">Balanço</a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="header">Produtos</div>
-            <div class="menu">
-                <a class="item" href="cadastro_produto.php">Cadastro</a>
-                <a class="item" href="produtos.php">Gerenciamento</a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="header">Usuários</div>
-            <div class="menu">
-                <a class="item" href="cadastro_usuario.php">Cadastro</a>
-                <a class="item" href="usuarios.php">Gerenciamento</a>
+    <div class="ui grid container segment">
+        <div class="row one column">
+            <div class="column">
+                <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>PRODUTO</th>
+                            <th>MARCA</th>
+                            <th>CONDIÇÃO</th>
+                            <th>CATEGORIA</th>
+                            <th>QUANTIDADE</th>
+                            <th>AÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?= $table ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <!-- Conteudo da Página -->
-    <div class="pusher">
-        <!-- Menu Fixo -->
-        <div class="ui container fluid">
-            <div class="ui top fixed menu stackable grey inverted">
-                <a class="item mobileMenu">
-                    <i class="sidebar icon large"></i> Menu
-                </a>
-                <div class="item header">
-                    <i class="dolly flatbed icon large"></i> Sistema Controle de Estoque
-                </div>
-                <div class="menu right">
-                    <div class="item header">
-                        <i class="user circle icon large"></i> Olá, Administrador
-                    </div>
-                    <a href="index.php" class="item">
-                        <i class="sign-out icon large"></i> Sair
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- Painel de Navegação de Trilha -->
-        <div class="ui grid container segment">
-            <div class="row one column">
-                <div class="column">
-                    <div class="ui breadcrumb big">
-                        <a class="section" href="dashboard.php">Sistema Controle de Estoque - SCE</a>
-                        <i class="right arrow icon divider"></i>
-                        <a class="section active">Produtos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Funcionalidades/Funções -->
-        <div class="ui grid container segment">
-            <div class="row one column">
-                <div class="column">
-                    <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>PRODUTO</th>
-                                <th>MARCA</th>
-                                <th>MODELO</th>
-                                <th>CONDIÇÃO</th>
-                                <th>QUANTIDADE</th>
-                                <th>AÇÃO</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Cabeçote</td>
-                                <td>Teste</td>
-                                <td>Teste</td>
-                                <td>Novo</td>
-                                <td>10</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_produto.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_produto.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mangueta</td>
-                                <td>Teste</td>
-                                <td>Teste</td>
-                                <td>Usado</td>
-                                <td>25</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_produto.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_produto.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Pistão</td>
-                                <td>Teste</td>
-                                <td>Teste</td>
-                                <td>Novo</td>
-                                <td>75</td>
-                                <td class="center aligned">
-                                    <div class="ui buttons">
-                                        <a class="ui button yellow" href="cadastro_produto.php">Editar</a>
-                                        <div class="or" data-text="OU"></div>
-                                        <a class="ui button negative" href="cadastro_produto.php">Deletar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 

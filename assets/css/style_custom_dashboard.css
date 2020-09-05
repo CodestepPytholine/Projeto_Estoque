@@ -19,3 +19,9 @@
 .grey-table {
 	border-top: .2em solid #5b5b58 !important;
 }
+
+@media only screen and (max-width: 768px) {
+	#displayMobile {
+		display: none;
+	}
+}

@@ -13,8 +13,7 @@ $(document).ready(function () {
     /*
     |-----------------------------------------------------|
     |  INSTANCIA QUE CHAMA O PLUGIN DATATABLE,            |
-    |  SERÁ CHAMADO SOMENTE NAS PAGINAS QUE FIZEREM USO,  |
-    |  NÃO USAR AGORA!!!                                  |
+    |  SERÁ CHAMADO SOMENTE NAS PAGINAS QUE FIZEREM USO.  |
     |-----------------------------------------------------|
     */
     $('.ui.table').DataTable( {

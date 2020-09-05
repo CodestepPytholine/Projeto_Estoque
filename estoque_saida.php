@@ -77,11 +77,11 @@
                     <i class="sidebar icon large"></i> Menu
                 </a>
                 <div class="item header">
-                    <i class="dolly flatbed icon large"></i> Sistema Controle de Estoque
+                    <i id="displayMobile" class="dolly flatbed icon large"></i> Sistema Controle de Estoque
                 </div>
                 <div class="menu right">
                     <div class="item header">
-                        <i class="user circle icon large"></i> Olá, Administrador
+                        <i id="displayMobile" class="user circle icon large"></i> Olá, Administrador
                     </div>
                     <a href="index.php" class="item">
                         <i class="sign-out icon large"></i> Sair

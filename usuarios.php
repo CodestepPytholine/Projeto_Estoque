@@ -19,7 +19,7 @@ include("php/dbconnect.php");
             $cargo =  $objDB->mysqli_result($objDB->resultado, $i, "nome_perfil");	
             $hdID = base64_encode($id);
             
-            $table .= "<tr>
+            $table .= " <tr>
                             <td>$nome</td>
                             <td>$username</td>
                             <td>$cargo</td>
@@ -27,8 +27,8 @@ include("php/dbconnect.php");
                                 <div class=\"ui buttons\">
                                     <form action=\"cadastro_usuario.php\" method=\"POST\" id=\"editUser\">
                                         <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                                        <button class=\"ui button yellow submit\">Editar</button>
                                     </form>                                    
-                                    <a class=\"ui button yellow\" href=\"#\" onclick=\"editUser(); return false;\">Editar</a>
                                     <div class=\"or\" data-text=\"OU\"></div>
                                     <a class=\"ui button negative\" href=\"cadastro_usuario.php\">Deletar</a>
                                 </div>
@@ -119,11 +119,11 @@ include("php/dbconnect.php");
                 <a class="item mobileMenu">
                     <i class="sidebar icon large"></i> Menu
                 </a>
-                <div class="item header">
+                <div id="displayMobile" class="item header">
                     <i class="dolly flatbed icon large"></i> Sistema Controle de Estoque
                 </div>
                 <div class="menu right">
-                    <div class="item header">
+                    <div id="displayMobile" class="item header">
                         <i class="user circle icon large"></i> Olá, Administrador
                     </div>
                     <a href="index.php" class="item">
@@ -158,9 +158,7 @@ include("php/dbconnect.php");
                             </tr>
                         </thead>
                         <tbody>  
-                           <?php 
-                            echo $table;
-                           ?>
+                            <?= $table ?>
                         </tbody>
                     </table>
                 </div>
@@ -168,9 +166,4 @@ include("php/dbconnect.php");
         </div>
     </div>
 </body>
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous">
-</script>
 </html>
