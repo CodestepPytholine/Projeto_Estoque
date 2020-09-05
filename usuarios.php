@@ -119,11 +119,11 @@ include("php/dbconnect.php");
                 <a class="item mobileMenu">
                     <i class="sidebar icon large"></i> Menu
                 </a>
-                <div class="item header">
+                <div id="displayMobile" class="item header">
                     <i class="dolly flatbed icon large"></i> Sistema Controle de Estoque
                 </div>
                 <div class="menu right">
-                    <div class="item header">
+                    <div id="displayMobile" class="item header">
                         <i class="user circle icon large"></i> Olá, Administrador
                     </div>
                     <a href="index.php" class="item">
@@ -158,9 +158,7 @@ include("php/dbconnect.php");
                             </tr>
                         </thead>
                         <tbody>  
-                           <?php 
-                            echo $table;
-                           ?>
+                            <?= $table ?>
                         </tbody>
                     </table>
                 </div>

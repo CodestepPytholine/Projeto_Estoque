@@ -1,3 +1,31 @@
+<?php 
+include("php/db.class.php");
+include("php/dbconnect.php");
+
+$objDB = new db();
+$objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+    if(isset($_POST) && !empty($_POST)){
+        $id = base64_decode($_POST['id']); 
+        $strTable = "produto";
+        $SQL = "*";
+        $where = "WHERE id_produto = '$id' ";
+        $objDB->dbSelect($strTable, $SQL, $where);
+        $numTotal = mysqli_num_rows($objDB->resultado);
+        if ($numTotal > 0) {
+            $nome =  $objDB->mysqli_result($objDB->resultado, 0, "nome_produto");
+            $qtd =  $objDB->mysqli_result($objDB->resultado, 0, "qtd_produto");
+            $desc =  $objDB->mysqli_result($objDB->resultado, 0, "descricao_produto");	
+            $tamanho =  $objDB->mysqli_result($objDB->resultado, 0, "tamanho_produto");
+            $modelo =  $objDB->mysqli_result($objDB->resultado, 0, "modelo_produto");
+            $preco =  $objDB->mysqli_result($objDB->resultado, 0, "preco_produto");	
+            $marca =  $objDB->mysqli_result($objDB->resultado, 0, "marca_produto");	
+            $cond =  $objDB->mysqli_result($objDB->resultado, 0, "condicao_produto");	
+            $cat =  $objDB->mysqli_result($objDB->resultado, 0, "categoria_produto");;	
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -93,46 +121,59 @@
         <div class="ui grid container segment">
             <div class="row one column stackable">
                 <div class="column">
-                    <form action="cadastro_produto.php" method="POST" class="ui form">
-                        <h2 class="ui dividing header">Cadastro de Produto</h2>
+                    <form action="backend/cadastrar_produto.php" method="POST" class="ui form">
+                        <h2 class="ui dividing header"><?=(isset($id) && !empty($id))?'Atualização':'Cadastro'?> de Produto</h2>
+                        <input type="hidden" name="id" value="<?=(isset($id))?$id:''?>">
                         <div class="fields">
-                            <div class="eight wide field required">
+                            <div class="six wide field required">
                                 <label>Nome do produto:</label>
-                                <input type="text" placeholder="Cabeçote Dianteiro">
+                                <input type="text" name="nome" placeholder="Cabeçote Dianteiro" value="<?=(isset($nome))?$nome:''?>">
                             </div>
                             <div class="four wide field required">
                                 <label>Preço pago:</label>
-                                <input type="text" placeholder="2.397,48">
+                                <input type="text" name="preco" placeholder="2.397,48" value="<?=(isset($preco))?$preco:''?>">
                             </div>
                             <div class="four wide field required">
                                 <label>Tamanho:</label>
-                                <input type="text" placeholder="10x15x20">
+                                <input type="text" name="tamanho" placeholder="10x15x20" value="<?=(isset($tamanho))?$tamanho:''?>">
+                            </div>
+                            <div class="two wide field required">
+                                <div class="ui toggle checkbox">
+                                    <label>Status:</label>
+                                    <input type="checkbox" name="status">
+                                </div>
                             </div>
                         </div>
                         <div class="equal width fields">
                             <div class="field required">
                                 <label>Marca:</label>
-                                <input type="text" placeholder="Hyunday">
+                                <input type="text" name="marca" placeholder="Hyunday" value="<?=(isset($marca))?$marca:''?>">
                             </div>
                             <div class="field required">
                                 <label>Modelo:</label>
-                                <input type="text" placeholder="Lanternagem">
+                                <input type="text" name="modelo" placeholder="Lanternagem" value="<?=(isset($modelo))?$modelo:''?>">
                             </div>
                             <div class="field required">
                                 <label>Quantidade em estoque:</label>
-                                <input type="text" placeholder="10">
+                                <input type="text" name="qtd" placeholder="10" value="<?=(isset($qtd))?$qtd:''?>">
                             </div>
                             <div class="field required">
                                 <label>Categoria:</label>
-                                <input type="text" placeholder="Ex.: Freio">
+                                <input type="text" name="categoria" placeholder="Ex.: Freio" value="<?=(isset($cat))?$cat:''?>">
                             </div>
                             <div class="field required">
                                 <label>Condição:</label>
-                                <select class="ui search dropdown">
-                                    <option value="" selected></option>
-                                    <option value="novo">Novo</option>
-                                    <option value="usado">Usado</option>
+                                <select class="ui search dropdown" name="condicao">
+                                    <option value="" <?=(isset($cond) == '')?'selected':''?>></option>
+                                    <option value="1" <?=(isset($cond) == '1')?'selected':''?>>Novo</option>
+                                    <option value="2" <?=(isset($cond) == '2')?'selected':''?>>Usado</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="sixteen wide field">
+                                <label for="textarea">Descrição</label>
+                                <textarea name="desc" id="textearea" rows="2"><?=(isset($desc))?$desc:''?></textarea>
                             </div>
                         </div>
                         <div>

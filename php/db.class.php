@@ -28,10 +28,12 @@ class db{
 		$this->sql = "select $campos from $tab $condicao";
 		$this->resultado =  mysqli_query($this->conexao, $this->sql) or die('Error querying database. :'.$this->sql);
 	}
+
 	function dbSelectNo($tab,$campos){
 		$this->sql = "select $campos from $tab";
 		$this->resultado =  mysqli_query($this->conexao, $this->sql) or die('Error querying database. :'.$this->sql);
 	}
+	
 
     function dbPaginacao($tab,$campos,$condicao,$qtd,$url){
 		$this->sql = "select $campos from $tab where $condicao";

@@ -1,23 +1,25 @@
 <?php 
- include("php/db.class.php");
- include("php/dbconnect.php");
- 
+//Include Banco de dados
+include("php/db.class.php");
+//Include Conexão
+include("php/dbconnect.php");
+
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     if(isset($_POST) && !empty($_POST)){
-            $id = base64_decode($_POST['id']); 
-            $strTable = "usuario";
-            $SQL = "*";
-            $where = "LEFT JOIN perfil on perfil.id_perfil = usuario.id_perfil WHERE id_usuario = '$id' ";
-            $objDB->dbSelect($strTable, $SQL, $where);
-            $numTotal = mysqli_num_rows($objDB->resultado);
-            if ($numTotal > 0) {
-                $name =  $objDB->mysqli_result($objDB->resultado, 0, "nome");
-                $cpf = $objDB->mysqli_result($objDB->resultado, 0, "cpf_usuario");
-                $username =  $objDB->mysqli_result($objDB->resultado, 0, "login");
-                $password = $objDB->mysqli_result($objDB->resultado, 0, "senha");
-                $cargo =  $objDB->mysqli_result($objDB->resultado, 0, "id_perfil");	
-            }
+        $id = base64_decode($_POST['id']); 
+        $strTable = "usuario";
+        $SQL = "*";
+        $where = "LEFT JOIN perfil on perfil.id_perfil = usuario.id_perfil WHERE id_usuario = '$id' ";
+        $objDB->dbSelect($strTable, $SQL, $where);
+        $numTotal = mysqli_num_rows($objDB->resultado);
+        if ($numTotal > 0) {
+            $name =  $objDB->mysqli_result($objDB->resultado, 0, "nome");
+            $cpf = $objDB->mysqli_result($objDB->resultado, 0, "cpf_usuario");
+            $username =  $objDB->mysqli_result($objDB->resultado, 0, "login");
+            $password = $objDB->mysqli_result($objDB->resultado, 0, "senha");
+            $cargo =  $objDB->mysqli_result($objDB->resultado, 0, "id_perfil");	
+        }
     }
 ?>
 
@@ -118,7 +120,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
                 <div class="column">
                     <form action="backend/cadastrar_usuario.php" method="POST" class="ui form">
                         <h2 class="ui dividing header"><?=(isset($id) && !empty($id))?'Atualização':'Cadastro'?> de Usuário</h2>
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <input type="hidden" name="id" value="<?=(isset($id))?$id:''?>">
                         <div class="fields">
                             <div class="twelve wide field required">
                                 <label>Nome completo:</label>
