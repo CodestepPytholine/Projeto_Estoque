@@ -1,10 +1,10 @@
 <?php
 /*
-    INCLUDES INICIAIS.
+    REQUIRE INICIAIS.
 */
-include("menu.php");
-include("php/db.class.php");
-include("php/dbconnect.php");
+require_once 'php/db.class.php';
+require_once 'php/dbconnect.php';
+require_once 'menu.php';
 /*
     CONEXÃO COM A BASE DE DADOS.
 */

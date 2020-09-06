@@ -2,10 +2,10 @@
 
 extract($_POST);
 /*
-    INCLUDES INICIAIS.
+    REQUIRE INICIAIS.
 */
-include("php/db.class.php");
-include("php/dbconnect.php");
+require_once '../php/db.class.php';
+require_once '../php/dbconnect.php';
 /*
     CONEXÃO COM A BASE DE DADOS.
 */

@@ -1,3 +1,16 @@
+<?php
+/*
+    REQUIRE INICIAIS.
+*/
+require_once 'php/db.class.php';
+require_once 'php/dbconnect.php';
+/*
+    CONEXÃO COM A BASE DE DADOS.
+*/
+$objDB = new db();
+$objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+$retorno = "";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +49,7 @@
                     Área Restrita | Sistema Controle de Estoque - SCE
                 </div>
             </h2>
-            <form class="ui large form" action="dashboard.php" method="POST">
+            <form class="ui large form" action="backend/autenticacao.php" method="POST">
                 <div class="ui stacked segment">
                     <div class="field">
                         <div class="ui left icon input">
