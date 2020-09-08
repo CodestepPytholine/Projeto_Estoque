@@ -65,7 +65,7 @@ if (isset($_POST) && !empty($_POST)) {
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <div class="ui breadcrumb big">
+                <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Dashboard</a>
                     <i class="right chevron icon divider"></i>
                     <a class="section" href="produtos.php">Produtos</a>
@@ -97,8 +97,8 @@ if (isset($_POST) && !empty($_POST)) {
                         </div>
                         <div class="two wide field">
                             <div class="ui toggle checkbox">
-                                <label>Status:</label>
-                                <input type="checkbox" name="status" tabindex="0" class="hidden">
+                                <label for="status">Status:</label>
+                                <input id="status" type="checkbox" name="status" tabindex="0" class="hidden">
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@ if (isset($_POST) && !empty($_POST)) {
                                 <i class="save icon"></i>
                             </div>
                             <div class="visible content">
-                                Salvar
+                                <?= (isset($id) && !empty($id)) ? 'Salvar' : 'Cadastrar' ?>
                             </div>
                         </button>
                     </div>

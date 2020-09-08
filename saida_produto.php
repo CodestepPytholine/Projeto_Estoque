@@ -46,7 +46,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <div class="ui breadcrumb big">
+                <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Dashboard</a>
                     <i class="right chevron icon divider"></i>
                     <a class="section" href="estoque_saida.php">Estoque - Saída</a>
@@ -113,7 +113,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
                                 <i class="save icon"></i>
                             </div>
                             <div class="visible content">
-                                Salvar
+                                <?= (isset($id) && !empty($id)) ? 'Salvar' : 'Cadastrar' ?>
                             </div>
                         </button>
                     </div>

@@ -33,11 +33,11 @@
             <a class="item mobileMenu">
                 <i class="sidebar icon large"></i> Menu
             </a>
-            <div id="displayMobile" class="item header" id="display">
+            <div id="displayMobile" class="item header">
                 <i class="dolly flatbed icon large"></i> Sistema Controle de Estoque
             </div>
             <div class="menu right">
-                <div id="displayMobile" class="item header" id="display">
+                <div id="displayMobile" class="item header">
                     <i class="user circle icon large"></i> Olá, Administrador
                 </div>
                 <a href="index.php" class="item">

@@ -65,7 +65,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <div class="ui breadcrumb big">
+                <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Dashboard</a>
                     <i class="right arrow icon divider"></i>
                     <a class="section active">Estoque - Entrada</a>

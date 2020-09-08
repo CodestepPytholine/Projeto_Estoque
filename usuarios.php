@@ -46,9 +46,12 @@ if ($numTotal > 0) {
                         <form action=\"cadastro_usuario.php\" method=\"POST\" id=\"editUser\">
                             <input type=\"hidden\" name=\"id\" value=\"$hdID\">
                             <button class=\"ui button yellow submit\">Editar</button>
-                        </form>                                    
+                        </form>
                         <div class=\"or\" data-text=\"OU\"></div>
-                        <a class=\"ui button negative\" href=\"cadastro_usuario.php\">Deletar</a>
+                        <form action=\"cadastro_usuario.php\" method=\"POST\" id=\"delUser\">
+                            <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                            <button class=\"ui button negative\">Deletar</button>
+                        </form>
                     </div>
                 </td>
             </tr>";
@@ -109,7 +112,7 @@ if ($numTotal > 0) {
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <div class="ui breadcrumb big">
+                <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Dashboard</a>
                     <i class="right arrow icon divider"></i>
                     <a class="section active">Usuários</a>

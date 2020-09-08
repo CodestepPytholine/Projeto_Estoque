@@ -62,7 +62,7 @@ if (isset($_POST) && !empty($_POST)) {
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <div class="ui breadcrumb big">
+                <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Dashboard</a>
                     <i class="right chevron icon divider"></i>
                     <a class="section" href="usuarios.php">Usuários</a>
@@ -115,7 +115,7 @@ if (isset($_POST) && !empty($_POST)) {
                                 <i class="save icon"></i>
                             </div>
                             <div class="visible content">
-                                Salvar
+                                <?= (isset($id) && !empty($id)) ? 'Salvar' : 'Cadastrar' ?>
                             </div>
                         </button>
                     </div>

@@ -16,14 +16,15 @@ $retorno = "";
     QUERY, SELECIONANDO TABELA 'USUARIO'.
 */
 $login = $_POST['usuario'];
+$senha = $_POST['senha'];
 $strTable = "usuario";
 $SQL = "*";
-$where = "WHERE login = '" . $login . "'";
+$where = "where login = '" . $login . "' and senha = '" . $senha . "'";
 $objDB->dbSelect($strTable, $SQL, $where);
 $numTotal = mysqli_num_rows($objDB->resultado);
 
 if ($numTotal > 0) {
-    echo 'aaaaaaaaaaaaaaaaaaaaaaaaaa';
+    echo 'pode logar';
 } else {
-    echo 'nao deu';
+    echo 'Usuário e senha incorretos!';
 }
