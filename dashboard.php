@@ -53,10 +53,173 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
         </div>
     </div>
     <!-- FUNCÕES -->
-    <div class="ui grid container segment">
-        <div class="row one column stackable">
+    <div class="ui grid container segment disabled">
+        <div class="row one column">
             <div class="column">
-
+                <div class="ui three cards stackable">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header">Titulo</div>
+                            <div class="meta">Metadado</div>
+                            <div class="description">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="content">
+                            <div class="header">Titulo</div>
+                            <div class="meta">Metadado</div>
+                            <div class="description">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="content">
+                            <div class="header">Titulo</div>
+                            <div class="meta">Metadado</div>
+                            <div class="description">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid container segment disabled">
+        <div class="row one column">
+            <div class="column">
+                <div class="ui steps fluid">
+                    <div class="step">
+                        <i class="truck icon"></i>
+                        <div class="content">
+                            <div class="title">Shipping</div>
+                            <div class="description">Choose your shipping options</div>
+                        </div>
+                    </div>
+                    <div class="active step">
+                        <i class="payment icon"></i>
+                        <div class="content">
+                            <div class="title">Billing</div>
+                            <div class="description">Enter billing information</div>
+                        </div>
+                    </div>
+                    <div class="disabled step">
+                        <i class="info icon"></i>
+                        <div class="content">
+                            <div class="title">Confirm Order</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid container segment disabled">
+        <div class="row one column">
+            <div class="column">
+                <div class="ui feed">
+                    <div class="event">
+                        <div class="label">
+                            <img src="https://via.placeholder.com/75">
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                <a>Helen Troy</a> added 2 photos
+                            </div>
+                            <div class="extra images">
+                                <a><img src="https://via.placeholder.com/100"></a>
+                                <a><img src="https://via.placeholder.com/100"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="https://via.placeholder.com/75">
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                <a>Laura Faucet</a> created a post
+                            </div>
+                            <div class="extra text">
+                                Have you seen what's going on in Israel? Can you believe it.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid container segment disabled">
+        <div class="row one column">
+            <div class="column">
+                <div class="ui statistics">
+                    <div class="statistic">
+                        <div class="value">
+                            22
+                        </div>
+                        <div class="label">
+                            Saves
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="text value">
+                            Three<br>
+                            Thousand
+                        </div>
+                        <div class="label">
+                            Signups
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <i class="plane icon"></i> 5
+                        </div>
+                        <div class="label">
+                            Flights
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <img src="https://via.placeholder.com/50" class="ui circular inline image">
+                            42
+                        </div>
+                        <div class="label">
+                            Team Members
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
