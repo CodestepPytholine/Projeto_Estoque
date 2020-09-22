@@ -7,9 +7,23 @@ require_once 'php/dbconnect.php';
 /*
     CONEXÃO COM A BASE DE DADOS.
 */
-$objDB = new db();
-$objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
-$retorno = "";
+
+if (empty($login) || empty($senha)) {
+    $login = $_POST['login'];
+    $senha =  $_POST['senha'];
+
+    $objDB = new db();
+    $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+    $tab = "usuario";
+    $campos = "*";
+    $condicao = "WHERE login = '$login' AND senha = '$senha'";
+    $objDB->dbSelect($tab, $campos, $condicao);
+    $numTotal = mysqli_num_rows($objDB->resultado);
+
+    if ($numTotal > 0) {
+        header('Location: dashboard.php');
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,12 +63,12 @@ $retorno = "";
                     Área Restrita | Sistema Controle de Estoque - SCE
                 </div>
             </h2>
-            <form class="ui large form" action="dashboard.php" method="POST">
+            <form class="ui large form" action="index.php" method="POST">
                 <div class="ui stacked segment">
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="usuario" placeholder="Usuario">
+                            <input type="text" name="login" placeholder="Login">
                         </div>
                     </div>
                     <div class="field">
