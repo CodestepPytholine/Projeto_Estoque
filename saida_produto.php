@@ -4,7 +4,6 @@
 */
 require_once 'php/db.class.php';
 require_once 'php/dbconnect.php';
-require_once 'menu.php';
 /*
     CONEXÃO COM A BASE DE DADOS.
 */
@@ -58,6 +57,9 @@ if (isset($_GET) && !empty($_GET)) {
     <script src="assets/theme/semantic.min.js"></script>
     <!-- Script Custom -->
     <script src="assets/js/script_custom_dashboard.js"></script>
+    <?php 
+    include('menu.php'); 
+    ?>
 </head>
 
 <body>

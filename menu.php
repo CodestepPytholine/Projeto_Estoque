@@ -1,14 +1,3 @@
-<<<<<<< Updated upstream
-<!-- MENU LATERAL -->
-<div class="ui vertical sidebar menu grey inverted">
-    <div class="item">
-        <div class="header">Estoque</div>
-        <div class="menu">
-            <a class="item" href="estoque_entrada.php">Entrada/Saída</a>
-            <!-- REMOVIDO TEMPORARIAMENTE
-                <a class="item" href="estoque_balanco.php">Balanço</a>
-            -->
-=======
 <?php 
 require_once 'php/session_check.php';
 require_once 'php/db.class.php';
@@ -30,7 +19,6 @@ switch($cookie){
                     <a class=\"item\" href=\"estoque_balanco.php\">Balanço</a>
                 -->
             </div>
->>>>>>> Stashed changes
         </div>
         <div class=\"item\">
             <div class=\"header\">Estoque</div>
