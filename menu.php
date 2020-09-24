@@ -3,8 +3,7 @@
     <div class="item">
         <div class="header">Estoque</div>
         <div class="menu">
-            <a class="item" href="estoque_entrada.php">Entrada</a>
-            <a class="item" href="estoque_saida.php">Saída</a>
+            <a class="item" href="estoque_entrada.php">Entrada/Saída</a>
             <!-- REMOVIDO TEMPORARIAMENTE
                 <a class="item" href="estoque_balanco.php">Balanço</a>
             -->

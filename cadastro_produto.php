@@ -122,9 +122,9 @@ if (isset($_POST) && !empty($_POST)) {
                         <div class="field required">
                             <label>Condição:</label>
                             <select class="ui dropdown" name="condicao">
-                                <option value="" <?= (isset($cond) == '') ? 'selected' : '' ?>></option>
-                                <option value="1" <?= (isset($cond) == '1') ? 'selected' : '' ?>>Novo</option>
-                                <option value="2" <?= (isset($cond) == '2') ? 'selected' : '' ?>>Usado</option>
+                                <option value="" <?= (isset($cond) && ($cond == '')) ? 'selected' : '' ?>></option>
+                                <option value="1" <?= (isset($cond) && ($cond == '1') ) ? 'selected' : '' ?>>Novo</option>
+                                <option value="2" <?= (isset($cond) && ($cond == '2') ) ? 'selected' : '' ?>>Usado</option>
                             </select>
                         </div>
                     </div>

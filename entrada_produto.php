@@ -10,6 +10,25 @@ require_once 'menu.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+if (isset($_GET) && !empty($_GET)) {
+    $id = base64_decode($_GET['id']);
+    $strTable = "produto";
+    $SQL = "*";
+    $where = "WHERE id_produto = '$id' ";
+    $objDB->dbSelect($strTable, $SQL, $where);
+    $numTotal = mysqli_num_rows($objDB->resultado);
+    if ($numTotal > 0) {
+        $nome =  $objDB->mysqli_result($objDB->resultado, 0, "nome_produto");
+        $qtd =  $objDB->mysqli_result($objDB->resultado, 0, "qtd_produto");
+        $desc =  $objDB->mysqli_result($objDB->resultado, 0, "descricao_produto");
+        $tamanho =  $objDB->mysqli_result($objDB->resultado, 0, "tamanho_produto");
+        $modelo =  $objDB->mysqli_result($objDB->resultado, 0, "modelo_produto");
+        $preco =  $objDB->mysqli_result($objDB->resultado, 0, "preco_produto");
+        $marca =  $objDB->mysqli_result($objDB->resultado, 0, "marca_produto");
+        $cond =  $objDB->mysqli_result($objDB->resultado, 0, "condicao_produto");
+        $cat =  $objDB->mysqli_result($objDB->resultado, 0, "categoria_produto");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -60,51 +79,53 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <div class="ui grid container segment">
         <div class="row one column stackable">
             <div class="column">
-                <form action="" method="POST" class="ui form">
+                <form action="backend/alterar_quantidade.php" method="POST" class="ui form">
+                    <input type="hidden" name="id" value="<?= (isset($id)) ? $id : '' ?>">
+                    <input type="hidden" name="funcao" value="1">
                     <h2 class="ui dividing header">Entrada de Produto</h2>
                     <div class="fields">
                         <div class="eight wide field required">
                             <label>Nome do produto:</label>
-                            <input type="text" value="Oléo lubrificante" disabled>
+                            <input type="text" value="<?= (isset($nome)) ? $nome : '' ?>" readonly="readonly">
                         </div>
                         <div class="four wide field required">
                             <label>Preço pago:</label>
-                            <input type="text" value="15,00" disabled>
+                            <input type="text" value="<?= (isset($preco)) ? $preco : '' ?>" readonly="readonly">
                         </div>
                         <div class="four wide field required">
                             <label>Tamanho:</label>
-                            <input type="text" value="Médio" disabled>
+                            <input type="text" value="<?= (isset($tamanho)) ? $tamanho : '' ?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="equal width fields">
                         <div class="field required">
                             <label>Marca:</label>
-                            <input type="text" value="WD" disabled>
+                            <input type="text" value="<?= (isset($marca)) ? $marca : '' ?>" readonly="readonly">
                         </div>
                         <div class="field">
                             <label>Modelo:</label>
-                            <input type="text" value="WD-40" disabled>
+                            <input type="text" value="<?= (isset($modelo)) ? $modelo : '' ?>" readonly="readonly">
                         </div>
                         <div class="field">
                             <label>Quantidade em estoque:</label>
-                            <input type="text" value="10" disabled>
+                            <input type="text" name="qtd" value="<?= (isset($qtd)) ? $qtd : '' ?>" readonly="readonly">
                         </div>
                         <div class="field required">
                             <label>Categoria:</label>
-                            <input type="text" value="Freio" disabled>
+                            <input type="text" value="<?= (isset($cat)) ? $cat : '' ?>" readonly="readonly">
                         </div>
                         <div class="field required">
                             <label>Condição:</label>
-                            <select name="" id="" disabled>
-                                <option value="novo">Novo</option>
-                                <option value="usado" selected>Usado</option>
+                            <select class="ui dropdown" name="condicao" disabled>
+                                <option value="1" <?= (isset($cond) && ($cond == '1')) ? 'selected' : '' ?>>Novo</option>
+                                <option value="2" <?= (isset($cond) && ($cond == '2')) ? 'selected' : '' ?>>Usado</option>
                             </select>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field required">
                             <label>Quantidade entrada:</label>
-                            <input type="text">
+                            <input name="valor" type="text">
                         </div>
                     </div>
                     <div>
@@ -113,7 +134,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
                                 <i class="save icon"></i>
                             </div>
                             <div class="visible content">
-                                <?= (isset($id) && !empty($id)) ? 'Salvar' : 'Cadastrar' ?>
+                                Salvar
                             </div>
                         </button>
                     </div>

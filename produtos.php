@@ -37,6 +37,11 @@ if ($numTotal > 0) {
         $cond =  $objDB->mysqli_result($objDB->resultado, $i, "condicao_produto");
         $cat =  $objDB->mysqli_result($objDB->resultado, $i, "categoria_produto");
         $hdID = base64_encode($id);
+        if($cond == '1'){
+            $cond = "Novo";
+        } else {
+            $cond = 'Usado';
+        }
         $table .=
             "<tr>
                 <td>$nome</td>
