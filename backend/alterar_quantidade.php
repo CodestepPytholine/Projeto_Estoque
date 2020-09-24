@@ -9,7 +9,6 @@ require_once '../php/dbconnect.php';
 /*
     CONEXÃO COM A BASE DE DADOS.
 */
-
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
 $retorno = "";

@@ -49,7 +49,6 @@ if ($numTotal > 0) {
                         <form action=\"saida_produto.php\" method=\"GET\" id=\"editUser\">
                             <input type=\"hidden\" name=\"id\" value=\"$hdID\">
                             <button class=\"ui button negative submit\" >Saída</button>
-                        </form>   
                     </div>
                     </td>
                 </tr>";
@@ -71,7 +70,7 @@ if ($numTotal > 0) {
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Estoque - Entrada | Sistema Controle de Estoque - SCE</title>
+    <title>Estoque - Entrada/Saída | Sistema Controle de Estoque - SCE</title>
     <meta name="title" content="Estoque - Entrada | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
@@ -113,7 +112,7 @@ if ($numTotal > 0) {
                 <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Dashboard</a>
                     <i class="right arrow icon divider"></i>
-                    <a class="section active">Estoque - Entrada</a>
+                    <a class="section active">Estoque - Entrada/Saída</a>
                 </div>
             </div>
         </div>
@@ -129,26 +128,12 @@ if ($numTotal > 0) {
                             <th>PRODUTO</th>
                             <th>QUANTIDADE</th>
                             <th>VALOR UNIDADE</th>
-                            <th>VALOR FINAL</th>
                             <th>CATEGORIA</th>
                             <th>AÇÃO</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Cabeçote</td>
-                            <td>10</td>
-                            <td>250,00</td>
-                            <td>2.500,00</td>
-                            <td>Freio</td>
-                            <td class="center aligned">
-                                <div class="ui buttons">
-                                    <a class="ui button yellow" href="entrada_produto.php">Editar</a>
-                                    <div class="or" data-text="OU"></div>
-                                    <a class="ui button negative" href="entrada_produto.php">Deletar</a>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php echo $table; ?>
                     </tbody>
                 </table>
             </div>
