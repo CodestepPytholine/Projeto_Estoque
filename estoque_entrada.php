@@ -10,6 +10,52 @@ require_once 'menu.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+
+$strTable = "produto";
+$SQL = "*";
+$objDB->dbSelectNo($strTable, $SQL);
+$numTotal = mysqli_num_rows($objDB->resultado);
+/*
+    VERIFICO SE A QUERY RETORNOU ALGUM RESULTADO.
+*/
+if ($numTotal > 0) {
+  
+    /*
+        INICIO MINHA TABELA COMO VAZIA.
+    */
+    $table = "";
+    /*
+        LAÇO QUE ORGANIZA O RESULTADO DA QUERY,
+        E MOSTRA NA TABELA.
+    */
+    for ($i = 0; $i < $numTotal; $i++) {
+        $id = $objDB->mysqli_result($objDB->resultado, $i, "id_produto");
+        $nome =  $objDB->mysqli_result($objDB->resultado, $i, "nome_produto");
+        $qtd =  $objDB->mysqli_result($objDB->resultado, $i, "qtd_produto");
+        $preco =  $objDB->mysqli_result($objDB->resultado, $i, "preco_produto");
+        $cat =  $objDB->mysqli_result($objDB->resultado, $i, "categoria_produto");
+        $hdID = base64_encode($id);
+        $table .="<tr>
+                    <td>$nome</td>
+                    <td>$qtd</td>
+                    <td>$preco</td>
+                    <td>$cat</td>
+                    <td class=\"center aligned\">
+                    <div class=\"ui buttons\">
+                        <form action=\"entrada_produto.php\" method=\"POST\" id=\"editUser\">
+                            <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                            <button class=\"ui button yellow submit\">Entrada</button>
+                        </form>       
+                        <div class=\"or\" data-text=\"OU\"></div>
+                        <form action=\"saida_produto.php\" method=\"POST\" id=\"editUser\">
+                            <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                            <button class=\"ui button negative submit\" >Saída</button>
+                         </form>   
+                    </div>
+                    </td>
+                </tr>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,7 +72,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Estoque - Entrada | Sistema Controle de Estoque - SCE</title>
+    <title>Estoque - Entrada/Saída | Sistema Controle de Estoque - SCE</title>
     <meta name="title" content="Estoque - Entrada | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
@@ -68,7 +114,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
                 <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Dashboard</a>
                     <i class="right arrow icon divider"></i>
-                    <a class="section active">Estoque - Entrada</a>
+                    <a class="section active">Estoque - Entrada/Saída</a>
                 </div>
             </div>
         </div>
@@ -84,26 +130,12 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
                             <th>PRODUTO</th>
                             <th>QUANTIDADE</th>
                             <th>VALOR UNIDADE</th>
-                            <th>VALOR FINAL</th>
                             <th>CATEGORIA</th>
                             <th>AÇÃO</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Cabeçote</td>
-                            <td>10</td>
-                            <td>250,00</td>
-                            <td>2.500,00</td>
-                            <td>Freio</td>
-                            <td class="center aligned">
-                                <div class="ui buttons">
-                                    <a class="ui button yellow" href="entrada_produto.php">Editar</a>
-                                    <div class="or" data-text="OU"></div>
-                                    <a class="ui button negative" href="entrada_produto.php">Deletar</a>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php echo $table; ?>
                     </tbody>
                 </table>
             </div>
