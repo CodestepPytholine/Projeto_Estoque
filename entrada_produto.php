@@ -10,8 +10,8 @@ require_once 'menu.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
-if (isset($_POST) && !empty($_POST)) {
-    $id = base64_decode($_POST['id']);
+if (isset($_GET) && !empty($_GET)) {
+    $id = base64_decode($_GET['id']);
     $strTable = "produto";
     $SQL = "*";
     $where = "WHERE id_produto = '$id' ";

@@ -10,8 +10,8 @@ require_once 'menu.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
-if (isset($_POST) && !empty($_POST)) {
-    $id = base64_decode($_POST['id']);
+if (isset($_GET) && !empty($_GET)) {
+    $id = base64_decode($_GET['id']);
     $strTable = "produto";
     $SQL = "*";
     $where = "WHERE id_produto = '$id' ";
@@ -82,7 +82,7 @@ if (isset($_POST) && !empty($_POST)) {
                 <form action="backend/alterar_quantidade.php" method="POST" class="ui form">
                     <input type="hidden" name="id" value="<?= (isset($id)) ? $id : '' ?>">
                     <input type="hidden" name="funcao" value="2">
-                    <h2 class="ui dividing header">Entrada de Produto</h2>
+                    <h2 class="ui dividing header">Saída de Produto</h2>
                     <div class="fields">
                         <div class="eight wide field required">
                             <label>Nome do produto:</label>

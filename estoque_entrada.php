@@ -42,12 +42,12 @@ if ($numTotal > 0) {
                     <td>$cat</td>
                     <td class=\"center aligned\">
                     <div class=\"ui buttons\">
-                        <form action=\"entrada_produto.php\" method=\"POST\" id=\"editUser\">
+                        <form action=\"entrada_produto.php\" method=\"GET\" id=\"editUser\">
                             <input type=\"hidden\" name=\"id\" value=\"$hdID\">
                             <button class=\"ui button yellow submit\">Entrada</button>
                         </form>       
                         <div class=\"or\" data-text=\"OU\"></div>
-                        <form action=\"saida_produto.php\" method=\"POST\" id=\"editUser\">
+                        <form action=\"saida_produto.php\" method=\"GET\" id=\"editUser\">
                             <input type=\"hidden\" name=\"id\" value=\"$hdID\">
                             <button class=\"ui button negative submit\" >Saída</button>
                          </form>   
