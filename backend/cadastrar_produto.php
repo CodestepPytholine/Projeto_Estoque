@@ -18,7 +18,6 @@ if (isset($_POST['id']) && !empty($_POST['id']) ) {
     } else {
         $status = '0';
     }
-    echo $status;
     $id = $_POST['id'];
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];

@@ -5,7 +5,7 @@
 require_once 'php/session_check.php';
 require_once 'php/db.class.php';
 require_once 'php/dbconnect.php';
-require_once 'menu.php';
+
 /*
     CONEXÃO COM A BASE DE DADOS.
 */
@@ -116,6 +116,9 @@ if ($numTotal > 0) {
     <!-- STYLE SEM USO NO MOMENTO
     <link rel="stylesheet" href="assets/plugins/DataTables/Buttons-1.6.2/css/buttons.semanticui.min.css">
     -->
+    <?php 
+    include('menu.php'); 
+    ?>
 </head>
 
 <body>
