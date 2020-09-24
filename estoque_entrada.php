@@ -10,6 +10,55 @@ require_once 'menu.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+<<<<<<< Updated upstream
+=======
+
+$strTable = "produto";
+$SQL = "*";
+$where = "WHERE status_produto = '1'";
+$objDB->dbSelect($strTable, $SQL, $where);
+$numTotal = mysqli_num_rows($objDB->resultado);
+/*
+    VERIFICO SE A QUERY RETORNOU ALGUM RESULTADO.
+*/
+if ($numTotal > 0) {
+    /*
+        INICIO MINHA TABELA COMO VAZIA.
+    */
+    $table = "";
+    /*
+        LAÇO QUE ORGANIZA O RESULTADO DA QUERY,
+        E MOSTRA NA TABELA.
+    */
+    for ($i = 0; $i < $numTotal; $i++) {
+        $id = $objDB->mysqli_result($objDB->resultado, $i, "id_produto");
+        $nome =  $objDB->mysqli_result($objDB->resultado, $i, "nome_produto");
+        $qtd =  $objDB->mysqli_result($objDB->resultado, $i, "qtd_produto");
+        $preco =  $objDB->mysqli_result($objDB->resultado, $i, "preco_produto");
+        $cat =  $objDB->mysqli_result($objDB->resultado, $i, "categoria_produto");
+        $hdID = base64_encode($id);
+        $table .="<tr>
+                    <td>$nome</td>
+                    <td>$qtd</td>
+                    <td>$preco</td>
+                    <td>$cat</td>
+                    <td class=\"center aligned\">
+                    <div class=\"ui buttons\">
+                        <form action=\"entrada_produto.php\" method=\"GET\" id=\"editUser\">
+                            <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                            <button class=\"ui button yellow submit\">Entrada</button>
+                        </form>       
+                        <div class=\"or\" data-text=\"OU\"></div>
+                        <form action=\"saida_produto.php\" method=\"GET\" id=\"editUser\">
+                            <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                            <button class=\"ui button negative submit\" >Saída</button>
+                        </form>   
+                    </div>
+                    </td>
+                </tr>";
+    }
+}
+>>>>>>> Stashed changes
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -77,7 +126,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <h2 class="ui dividing header">Estoque - Entrada</h2>
+                <h2 class="ui dividing header">Estoque - Entrada/Saída</h2>
                 <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
                     <thead>
                         <tr>
