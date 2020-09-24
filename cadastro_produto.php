@@ -26,7 +26,8 @@ if (isset($_POST) && !empty($_POST)) {
         $preco =  $objDB->mysqli_result($objDB->resultado, 0, "preco_produto");
         $marca =  $objDB->mysqli_result($objDB->resultado, 0, "marca_produto");
         $cond =  $objDB->mysqli_result($objDB->resultado, 0, "condicao_produto");
-        $cat =  $objDB->mysqli_result($objDB->resultado, 0, "categoria_produto");;
+        $cat =  $objDB->mysqli_result($objDB->resultado, 0, "categoria_produto");
+        $status =  $objDB->mysqli_result($objDB->resultado, 0, "status_produto");
     }
 }
 ?>
@@ -91,14 +92,14 @@ if (isset($_POST) && !empty($_POST)) {
                             <label>Preço pago:</label>
                             <input type="text" name="preco" placeholder="2.397,48" value="<?= (isset($preco)) ? $preco : '' ?>">
                         </div>
-                        <div class="four wide field required">
+                        <div class="four wide field">
                             <label>Tamanho:</label>
                             <input type="text" name="tamanho" placeholder="10x15x20" value="<?= (isset($tamanho)) ? $tamanho : '' ?>">
                         </div>
                         <div class="two wide field">
                             <div class="ui toggle checkbox">
                                 <label for="status">Status:</label>
-                                <input id="status" type="checkbox" name="status" tabindex="0" class="hidden">
+                                <input id="status" type="checkbox" name="status" tabindex="0" class="hidden" <?= (isset($status) && $status == 0) ? '' : 'checked' ?>>
                             </div>
                         </div>
                     </div>

@@ -10,16 +10,15 @@ require_once 'menu.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
-
 $strTable = "produto";
 $SQL = "*";
-$objDB->dbSelectNo($strTable, $SQL);
+$where = "WHERE status_produto = '1'";
+$objDB->dbSelect($strTable, $SQL, $where);
 $numTotal = mysqli_num_rows($objDB->resultado);
 /*
     VERIFICO SE A QUERY RETORNOU ALGUM RESULTADO.
 */
 if ($numTotal > 0) {
-  
     /*
         INICIO MINHA TABELA COMO VAZIA.
     */
@@ -50,7 +49,6 @@ if ($numTotal > 0) {
                         <form action=\"saida_produto.php\" method=\"GET\" id=\"editUser\">
                             <input type=\"hidden\" name=\"id\" value=\"$hdID\">
                             <button class=\"ui button negative submit\" >Saída</button>
-                         </form>   
                     </div>
                     </td>
                 </tr>";
@@ -123,7 +121,7 @@ if ($numTotal > 0) {
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <h2 class="ui dividing header">Estoque - Entrada</h2>
+                <h2 class="ui dividing header">Estoque - Entrada/Saída</h2>
                 <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
                     <thead>
                         <tr>

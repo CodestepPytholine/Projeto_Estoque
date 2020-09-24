@@ -1,3 +1,4 @@
+
 <?php
 /*
     REQUIRE INICIAIS.
@@ -7,11 +8,12 @@ require_once 'php/dbconnect.php';
 /*
     CONEXÃO COM A BASE DE DADOS.
 */
+$display = "";
+$message = "";
 
-if (empty($login) || empty($senha)) {
+if (!empty($_POST['login']) && !empty($_POST['senha']) && isset($_POST['login']) && isset($_POST['login'])) {
     $login = $_POST['login'];
     $senha =  $_POST['senha'];
-
     $objDB = new db();
     $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     $tab = "usuario";
@@ -19,10 +21,15 @@ if (empty($login) || empty($senha)) {
     $condicao = "WHERE login = '$login' AND senha = '$senha'";
     $objDB->dbSelect($tab, $campos, $condicao);
     $numTotal = mysqli_num_rows($objDB->resultado);
+    $perfil =  base64_encode($objDB->mysqli_result($objDB->resultado, 0, "id_perfil"));
 
     if ($numTotal > 0) {
+        setcookie('pf',$perfil, (time() + (5 * 24 * 3600)));
         header('Location: dashboard.php');
-    }
+    } else {
+        $display = "style=\"display: block !important;\"" ;
+        $message = "Usuário ou Senha incorretos.";
+    }   
 }
 ?>
 <!DOCTYPE html>
@@ -79,7 +86,7 @@ if (empty($login) || empty($senha)) {
                     </div>
                     <div class="ui fluid large submit button grey">Entrar</div>
                 </div>
-                <div class="ui error message"></div>
+                <div class="ui error message" <?php echo $display; ?> > <?php echo $message; ?> </div>
             </form>
             <div class="ui message">
                 Esqueceu a senha? <a href="#">Recuperar senha</a>

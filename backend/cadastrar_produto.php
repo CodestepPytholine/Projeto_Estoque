@@ -12,9 +12,13 @@ require_once '../php/dbconnect.php';
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
 $retorno = "";
-
-if (isset($_POST['id']) && !empty($_POST['id'])) {
-
+if (isset($_POST['id']) && !empty($_POST['id']) ) {
+    if(isset($_POST['status']) && !empty($_POST['status']) && $_POST['status'] == 'on'){
+        $status = '1';
+    } else {
+        $status = '0';
+    }
+    echo $status;
     $id = $_POST['id'];
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
@@ -30,6 +34,7 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     $strSQL = " nome_produto='$nome',
                 qtd_produto='$qtd',
                 descricao_produto='$desc',
+                status_produto='$status',
                 tamanho_produto='$tamanho',
                 modelo_produto='$modelo',
                 preco_produto='$preco',
@@ -46,7 +51,11 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
         $retorno .= " Erro de Atualização.";
     }
 } else {
-
+    if(isset($_POST['status']) && !empty($_POST['status']) && $_POST['status'] == 'on' ){
+        $status = '1';
+    } else {
+        $status = '0';
+    }
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
     $tamanho = $_POST['tamanho'];
@@ -61,7 +70,7 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     $strSQL = " ('$nome',
                 '$qtd',
                 '$desc',
-                '1',
+                '$status',
                 '$tamanho',
                 '$modelo',
                 '$preco',
@@ -77,4 +86,4 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
         $retorno .= " Erro de Cadastro.";
     }
 }
-exit("<script> alert('$retorno');   window.location = document.referrer; </script>");
+exit("<script> alert('$retorno'); window.location.href = '../produtos.php'; </script>");
