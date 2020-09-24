@@ -10,9 +10,6 @@ require_once 'menu.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
-<<<<<<< Updated upstream
-=======
-
 $strTable = "produto";
 $SQL = "*";
 $where = "WHERE status_produto = '1'";
@@ -58,7 +55,6 @@ if ($numTotal > 0) {
                 </tr>";
     }
 }
->>>>>>> Stashed changes
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
