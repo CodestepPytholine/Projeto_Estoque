@@ -39,8 +39,8 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <script src="assets/theme/semantic.min.js"></script>
     <!-- Script Custom -->
     <script src="assets/js/script_custom_dashboard.js"></script>
-    <?php 
-    include('menu.php'); 
+    <?php
+    include('menu.php');
     ?>
 </head>
 
@@ -80,19 +80,37 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
                     </div>
                     <div class="card">
                         <div class="content">
-                            <div class="header">Titulo</div>
-                            <div class="meta">Metadado</div>
+                            <div class="header">Teclado</div>
+                            <div class="meta">Periferico</div>
                             <div class="description">
-                                DESCRIÇÃO
+                                <div class="ui statistics">
+                                    <div class="statistic">
+                                        <div class="value">
+                                            15
+                                        </div>
+                                        <div class="label">
+                                            Razer Chroma
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="content">
-                            <div class="header">Titulo</div>
-                            <div class="meta">Metadado</div>
+                            <div class="header">Processador</div>
+                            <div class="meta">Unidade de Processamento Central</div>
                             <div class="description">
-                                DESCRIÇÃO
+                                <div class="ui statistics">
+                                    <div class="statistic">
+                                        <div class="value">
+                                            100
+                                        </div>
+                                        <div class="label">
+                                            Ryzen 7
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -58,6 +58,8 @@ if (isset($_POST) && !empty($_POST)) {
     <script src="assets/theme/semantic.min.js"></script>
     <!-- Script Custom -->
     <script src="assets/js/script_custom_dashboard.js"></script>
+    <!-- Script JQuery Mask -->
+    <script src="assets/plugins/JQuery Mask/jquery.mask.min.js"></script>
     <?php 
     include('menu.php'); 
     ?>
@@ -93,7 +95,7 @@ if (isset($_POST) && !empty($_POST)) {
                         </div>
                         <div class="four wide field required">
                             <label>Preço pago:</label>
-                            <input type="text" name="preco" placeholder="2.397,48" value="<?= (isset($preco)) ? $preco : '' ?>">
+                            <input type="text" name="preco" placeholder="2.397,48" value="<?= (isset($preco)) ? $preco : '' ?>" onkeypress="$(this).mask('#.##0,00', {reverse: true})">
                         </div>
                         <div class="four wide field">
                             <label>Tamanho:</label>
@@ -117,7 +119,7 @@ if (isset($_POST) && !empty($_POST)) {
                         </div>
                         <div class="field required">
                             <label>Quantidade em estoque:</label>
-                            <input type="text" name="qtd" placeholder="10" value="<?= (isset($qtd)) ? $qtd : '' ?>">
+                            <input type="text" name="qtd" placeholder="10" value="<?= (isset($qtd)) ? $qtd : '' ?>" onkeypress="$(this).mask('0#')">
                         </div>
                         <div class="field required">
                             <label>Categoria:</label>

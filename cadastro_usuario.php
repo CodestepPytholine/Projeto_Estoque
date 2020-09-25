@@ -65,6 +65,8 @@ if (isset($_POST) && !empty($_POST)) {
     <script src="assets/theme/semantic.min.js"></script>
     <!-- Script Custom -->
     <script src="assets/js/script_custom_dashboard.js"></script>
+    <!-- Script JQuery Mask -->
+    <script src="assets/plugins/JQuery Mask/jquery.mask.min.js"></script>
     <?php 
     include('menu.php'); 
     ?>
@@ -99,7 +101,7 @@ if (isset($_POST) && !empty($_POST)) {
                         </div>
                         <div class="four wide field required">
                             <label>CPF:</label>
-                            <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value="<?= (isset($cpf)) ? $cpf : '' ?>">
+                            <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value="<?= (isset($cpf)) ? $cpf : '' ?>" onkeypress="$(this).mask('000.000.000-00', {reverse: true})">
                         </div>
                     </div>
                     <div class="equal width fields">

@@ -61,7 +61,7 @@ if ($numTotal > 0) {
                         <div class=\"or\" data-text=\"OU\"></div>
                         <form action=\"cadastro_usuario.php\" method=\"POST\" id=\"delUser\">
                             <input type=\"hidden\" name=\"id\" value=\"$hdID\">
-                            <button class=\"ui button negative\">Deletar</button>
+                            <button class=\"ui button positive\">Visualizar</button>
                         </form>
                     </div>
                 </td>

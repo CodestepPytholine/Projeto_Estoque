@@ -57,8 +57,10 @@ if (isset($_GET) && !empty($_GET)) {
     <script src="assets/theme/semantic.min.js"></script>
     <!-- Script Custom -->
     <script src="assets/js/script_custom_dashboard.js"></script>
-    <?php 
-    include('menu.php'); 
+    <!-- Script JQuery Mask -->
+    <script src="assets/plugins/JQuery Mask/jquery.mask.min.js"></script>
+    <?php
+    include('menu.php');
     ?>
 </head>
 
@@ -92,7 +94,7 @@ if (isset($_GET) && !empty($_GET)) {
                         </div>
                         <div class="four wide field required">
                             <label>Preço pago:</label>
-                            <input type="text" value="<?= (isset($preco)) ? $preco : '' ?>" readonly="readonly">
+                            <input type="text" value="<?= (isset($preco)) ? $preco : '' ?>" readonly="readonly" onkeypress="$(this).mask('#.##0,00', {reverse: true})">
                         </div>
                         <div class="four wide field required">
                             <label>Tamanho:</label>
@@ -110,7 +112,7 @@ if (isset($_GET) && !empty($_GET)) {
                         </div>
                         <div class="field">
                             <label>Quantidade em estoque:</label>
-                            <input type="text" name="qtd" value="<?= (isset($qtd)) ? $qtd : '' ?>" readonly="readonly">
+                            <input type="text" name="qtd" value="<?= (isset($qtd)) ? $qtd : '' ?>" readonly="readonly" onkeypress="$(this).mask('0#')">
                         </div>
                         <div class="field required">
                             <label>Categoria:</label>
@@ -127,7 +129,7 @@ if (isset($_GET) && !empty($_GET)) {
                     <div class="fields">
                         <div class="four wide field required">
                             <label>Quantidade Saída:</label>
-                            <input name="valor" type="text">
+                            <input name="valor" type="text" onkeypress="$(this).mask('0#')">
                         </div>
                     </div>
                     <div>
