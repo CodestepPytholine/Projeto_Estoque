@@ -2,14 +2,63 @@
 /*
     REQUIRE INICIAIS.
 */
+require_once 'php/session_check.php';
 require_once 'php/db.class.php';
 require_once 'php/dbconnect.php';
 
 /*
     CONEXÃO COM A BASE DE DADOS.
 */
+
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+/*
+    QUERY, SELECIONANDO TABELA 'USUARIO'.
+*/
+$strTable = "abastecimento";
+$SQL = "*";
+$where = "LEFT JOIN caminhão on id_caminhão = caminhão_id_caminhão";
+$objDB->dbSelect($strTable, $SQL, $where);
+$numTotal = mysqli_num_rows($objDB->resultado);
+/*
+    VERIFICO SE A QUERY RETORNOU ALGUM RESULTADO.
+*/
+if ($numTotal > 0) {
+    /*
+        INICIO MINHA TABELA COMO VAZIA.
+    */
+    $table = "";
+    /*
+        LAÇO QUE ORGANIZA O RESULTADO DA QUERY,
+        E MOSTRA NA TABELA.
+    */
+    for ($i = 0; $i < $numTotal; $i++) {
+        $id =  $objDB->mysqli_result($objDB->resultado, $i, "id_abastecimento");
+        $km =  $objDB->mysqli_result($objDB->resultado, $i, "km_abastecimento");
+        $qtd = $objDB->mysqli_result($objDB->resultado, $i, "qtd_abastecimento");
+        $placa =  $objDB->mysqli_result($objDB->resultado, $i, "placa_caminhao");
+        $hdID = base64_encode($id);
+        $table .=
+            "<tr>
+                <td>$placa</td>
+                <td>$km</td>
+                <td>$qtd</td>
+                <td class=\"center aligned\">
+                    <div class=\"ui buttons\">
+                    <form action=\"cadastro_abastecimento.php\" method=\"POST\" id=\"editUser\">
+                        <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                        <button class=\"ui button yellow submit\">Editar</button>
+                    </form>
+                    <div class=\"or\" data-text=\"OU\"></div>
+                    <form action=\"cadastro_abastecimento.php\" method=\"POST\" id=\"delUser\">
+                        <input type=\"hidden\" name=\"id\" value=\"$hdID\">
+                        <button class=\"ui button positive\">Visualizar</button>
+                    </form>
+                    </div>
+                </td>
+            </tr>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,8 +75,8 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Estoque - Saída | Sistema Controle de Estoque - SCE</title>
-    <meta name="title" content="Estoque - Saída | Sistema Controle de Estoque - SCE" />
+    <title>Abastecimento | Sistema Controle de Estoque - SCE</title>
+    <meta name="title" content="Usuários | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
@@ -71,7 +120,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
                 <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Página Inicial</a>
                     <i class="right arrow icon divider"></i>
-                    <a class="section active">Estoque - Saída</a>
+                    <a class="section active">Abastecimento</a>
                 </div>
             </div>
         </div>
@@ -80,33 +129,17 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <h2 class="ui dividing header">Estoque - Saída</h2>
                 <table class="ui striped celled table display responsive nowrap unstackable grey-table" style="width:100%">
                     <thead>
                         <tr>
-                            <th>PRODUTO</th>
-                            <th>QUANTIDADE</th>
-                            <th>VALOR UNIDADE</th>
-                            <th>VALOR FINAL</th>
-                            <th>CATEGORIA</th>
+                            <th>Placa Caminhão</th>
+                            <th>KM de abastecimento</th>
+                            <th>Quantidade abastecida</th>
                             <th>AÇÃO</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Cabeçote</td>
-                            <td>10</td>
-                            <td>250,00</td>
-                            <td>2500,00</td>
-                            <td>Freio</td>
-                            <td class="center aligned">
-                                <div class="ui buttons">
-                                    <a class="ui button yellow" href="saida_produto.php">Editar</a>
-                                    <div class="or" data-text="OU"></div>
-                                    <a class="ui button negative" href="saida_produto.php">Deletar</a>
-                                </div>
-                            </td>
-                        </tr>
+                        <?= (isset($table)) ? $table : '' ?>
                     </tbody>
                 </table>
             </div>

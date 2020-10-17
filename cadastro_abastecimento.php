@@ -8,35 +8,60 @@ require_once 'php/dbconnect.php';
 /*
     CONEXÃO COM A BASE DE DADOS.
 */
-$cookie = base64_decode($_COOKIE['pf']);
-switch($cookie){
-    case 1:
-    case 2:
-        break;
-    case 3:
-    case 4: 
-        exit("<script> alert('Permissão Negada.'); window.location.href = 'dashboard.php'; </script>");
-        break;   
-}
+
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
 
 if (isset($_POST) && !empty($_POST)) {
     $id = base64_decode($_POST['id']);
-    $strTable = "usuario";
+    $strTable = "abastecimento";
     $SQL = "*";
-    $where = "LEFT JOIN perfil on perfil.id_perfil = usuario.id_perfil WHERE id_usuario = '$id' ";
+    $where = "LEFT JOIN caminhão on id_caminhão = caminhão_id_caminhão WHERE id_abastecimento = '$id' ";
     $objDB->dbSelect($strTable, $SQL, $where);
     $numTotal = mysqli_num_rows($objDB->resultado);
     if ($numTotal > 0) {
-        $name =  $objDB->mysqli_result($objDB->resultado, 0, "nome");
-        $cpf = $objDB->mysqli_result($objDB->resultado, 0, "cpf_usuario");
-        $username =  $objDB->mysqli_result($objDB->resultado, 0, "login");
-        $password = $objDB->mysqli_result($objDB->resultado, 0, "senha");
-        $cargo =  $objDB->mysqli_result($objDB->resultado, 0, "id_perfil");
+        $select = "";
+        $km =  $objDB->mysqli_result($objDB->resultado, 0, "km_abastecimento");
+        $qtd = $objDB->mysqli_result($objDB->resultado, 0, "qtd_abastecimento");
+        $caminhao =  $objDB->mysqli_result($objDB->resultado, 0, "caminhão_id_caminhão");
     }
+    $strTable = "caminhão";
+    $SQL = "*";
+    $objDB->dbSelectNo($strTable, $SQL);
+    $numTotal = mysqli_num_rows($objDB->resultado);
+    
+    for($i = 0; $i < $numTotal; $i++ ){
+        $id_caminhao = $objDB->mysqli_result($objDB->resultado, $i, "id_caminhão");
+        $name =  $objDB->mysqli_result($objDB->resultado, $i, "nome_motorista");
+        $placa = $objDB->mysqli_result($objDB->resultado, $i, "placa_caminhao");
+        if($caminhao == $id_caminhao){
+            $select .= "<option value=\"$id_caminhao\" selected>$placa - $name</option>";
+        } else {
+            $select .= "<option value=\"$id_caminhao\" >$placa - $name</option>";
+        }
+        
+    }
+} else {
+    $strTable = "caminhão";
+    $SQL = "*";
+    $objDB->dbSelectNo($strTable, $SQL);
+    $numTotal = mysqli_num_rows($objDB->resultado);
+
+    if ($numTotal > 0) {
+        $select = "";
+        for($i = 0; $i < $numTotal; $i++ ){
+            $id_caminhao = $objDB->mysqli_result($objDB->resultado, $i, "id_caminhão");
+            $name =  $objDB->mysqli_result($objDB->resultado, $i, "nome_motorista");
+            $placa = $objDB->mysqli_result($objDB->resultado, $i, "placa_caminhao");
+            $modelo =  $objDB->mysqli_result($objDB->resultado, $i, "modelo_caminhao");
+            $ano = $objDB->mysqli_result($objDB->resultado, $i, "ano_caminhao");
+            $select .= "<option value=\"$id_caminhao\" >$placa - $name</option>";
+        }
+    }
+
 }
-?>
+
+ ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -52,7 +77,7 @@ if (isset($_POST) && !empty($_POST)) {
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Cadastro Usuário | Sistema Controle de Estoque - SCE</title>
+    <title>Cadastro Abastecimento | Sistema Controle de Estoque - SCE</title>
     <meta name="title" content="Cadastro Usuário | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
@@ -80,9 +105,9 @@ if (isset($_POST) && !empty($_POST)) {
                 <div class="ui breadcrumb">
                     <a class="section" href="dashboard.php">Página Inicial</a>
                     <i class="right chevron icon divider"></i>
-                    <a class="section" href="usuarios.php">Usuários</a>
+                    <a class="section" href="abastecimento.php">Abastecimento</a>
                     <i class="right arrow icon divider"></i>
-                    <a class="section active">Cadastro Usuário</a>
+                    <a class="section active">Cadastro de Abastecimento</a>
                 </div>
             </div>
         </div>
@@ -91,41 +116,30 @@ if (isset($_POST) && !empty($_POST)) {
     <div class="ui grid container segment">
         <div class="row one column stackable">
             <div class="column">
-                <form action="backend/cadastrar_usuario.php" method="POST" class="ui form">
-                    <h2 class="ui dividing header"><?= (isset($id) && !empty($id)) ? 'Atualização' : 'Cadastro' ?> de Usuário</h2>
+                <form action="backend/cadastrar_abastecimento.php" method="POST" class="ui form">
+                    <h2 class="ui dividing header"><?= (isset($id) && !empty($id)) ? 'Atualização' : 'Cadastro' ?> de Abastecimento</h2>
                     <input type="hidden" name="id" value="<?= (isset($id)) ? $id : '' ?>">
                     <div class="fields">
                         <div class="twelve wide field required">
-                            <label>Nome completo:</label>
-                            <input type="text" name="nome" placeholder="John" value="<?= (isset($name)) ? $name : '' ?>">
+                            <label>KM de abastecimento</label>
+                            <input type="text" name="km" placeholder="178146"  value="<?= (isset($km)) ? $km : '' ?>" onkeypress="$(this).mask('000.000.000 KM', {reverse: true})">
                         </div>
                         <div class="four wide field required">
-                            <label>CPF:</label>
-                            <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx" value="<?= (isset($cpf)) ? $cpf : '' ?>" onkeypress="$(this).mask('000.000.000-00', {reverse: true})">
+                            <label>Quantidade abastecida:</label>
+                            <input type="text" name="qtd" placeholder="70" value="<?= (isset($qtd)) ? $qtd : '' ?>">
                         </div>
                     </div>
                     <div class="equal width fields">
                         <div class="field required">
-                            <label>Nome de usuário:</label>
-                            <input type="text" name="username" placeholder="john" value="<?= (isset($username)) ? $username : '' ?>">
-                        </div>
-                        <div class="field required">
-                            <label>Senha:</label>
-                            <input type="text" name="password" placeholder="*********" value="<?= (isset($password)) ? $password : '' ?>">
-                        </div>
-                        <div class="field required">
-                            <label>Cargo:</label>
-                            <select class="ui dropdown" name="cargo">
-                                <option value="" <?= (isset($cargo) == '') ? 'selected' : '' ?>></option>
-                                <option value="1" <?= (isset($cargo) == '1') ? 'selected' : '' ?>>Dono</option>
-                                <option value="2" <?= (isset($cargo) == '2') ? 'selected' : '' ?>>Gerente</option>
-                                <option value="3" <?= (isset($cargo) == '3') ? 'selected' : '' ?>>Atendente</option>
-                                <option value="4" <?= (isset($cargo) == '4') ? 'selected' : '' ?>>Mecânico</option>
+                            <label>Caminhao:</label>
+                            <select class="ui dropdown" name="caminhao">
+                                <option value="" selected></option>
+                                <?php echo $select; ?>
                             </select>
                         </div>
                     </div>
                     <div>
-                        <button class="ui animated button green right floated large" type="submit" tabindex="0">
+                        <button class="ui animated button grey right floated large" type="submit" tabindex="0">
                             <div class="hidden content">
                                 <i class="save icon"></i>
                             </div>
@@ -133,15 +147,6 @@ if (isset($_POST) && !empty($_POST)) {
                                 <?= (isset($id) && !empty($id)) ? 'Salvar' : 'Cadastrar' ?>
                             </div>
                         </button>
-                        <a href="usuarios.php" class="ui animated button grey right floated large" tabindex="0">
-                            <div class="hidden content">
-                                <i class="chevron left icon"></i>
-                            </div>
-                            <div class="visible content">
-                                Voltar
-                            </div>
-                        </a>
-                       
                     </div>
                 </form>
             </div>

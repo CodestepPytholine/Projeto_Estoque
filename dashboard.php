@@ -10,6 +10,49 @@ require_once 'php/dbconnect.php';
 */
 $objDB = new db();
 $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
+
+    $strTable = "produto";
+    $SQL = "*";
+
+    $objDB->dbSelectNo($strTable, $SQL);
+    $numTotal = mysqli_num_rows($objDB->resultado);
+    if ($numTotal > 0){
+        
+       
+    
+
+    $table = "";
+    /*
+        LAÇO QUE ORGANIZA O RESULTADO DA QUERY,
+        E MOSTRA NA TABELA.
+    */
+        for ($i = 0; $i < $numTotal; $i++) {
+            $name =  $objDB->mysqli_result($objDB->resultado, $i, "nome_produto");
+            $qtd =  $objDB->mysqli_result($objDB->resultado, $i, "qtd_produto");
+            $modelo =  $objDB->mysqli_result($objDB->resultado, $i, "modelo_produto");
+            $cat =  $objDB->mysqli_result($objDB->resultado, $i, "categoria_produto");
+            $qtdMin =  $objDB->mysqli_result($objDB->resultado, $i, "quantidade_minima");
+            if($qtd <= $qtdMin){
+                $table .=
+                "<div class=\"card\">
+                    <div class=\"content\">
+                        <div class=\"header\">$name</div>
+                        <div class=\"meta\">$cat</div>
+                        <div class=\"description\">
+                            <div class=\"ui statistics\">
+                                <div class=\"statistic\">
+                                    <div class=\"value\">
+                                        $qtd
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+            }
+            
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,7 +69,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <meta name="company" content="">
     <meta name="author" content="Phytoline & Gabriel_PRM" />
     <!-- Titulo & Favicon -->
-    <title>Dashboard | Sistema Controle de Estoque - SCE</title>
+    <title>Página Inicial | Sistema Controle de Estoque - SCE</title>
     <meta name="title" content="Dashboard | Sistema Controle de Estoque - SCE" />
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="icon" href="" type="image/x-icon">
@@ -50,7 +93,7 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
         <div class="row one column">
             <div class="column">
                 <div class="ui breadcrumb">
-                    <a class="section active" href="dashboard.php">Dashboard</a>
+                    <a class="section active" href="dashboard.php">Página Inicial</a>
                 </div>
             </div>
         </div>
@@ -59,65 +102,33 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-                <div class="ui six cards stackable">
-                    <div class="card">
-                        <div class="content">
-                            <div class="header">Cabeçote</div>
-                            <div class="meta">Motor</div>
-                            <div class="description">
-                                <div class="ui statistics">
-                                    <div class="statistic">
-                                        <div class="value">
-                                            5
-                                        </div>
-                                        <div class="label">
-                                            Honda Civic
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="content">
-                            <div class="header">Teclado</div>
-                            <div class="meta">Periferico</div>
-                            <div class="description">
-                                <div class="ui statistics">
-                                    <div class="statistic">
-                                        <div class="value">
-                                            15
-                                        </div>
-                                        <div class="label">
-                                            Razer Chroma
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="content">
-                            <div class="header">Processador</div>
-                            <div class="meta">Unidade de Processamento Central</div>
-                            <div class="description">
-                                <div class="ui statistics">
-                                    <div class="statistic">
-                                        <div class="value">
-                                            100
-                                        </div>
-                                        <div class="label">
-                                            Ryzen 7
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="ui message">
+                <div class="header">
+                    Alerta Caminhões
+                </div>
+            </div>
+                <div class="ui three cards stackable">
+                    
                 </div>
             </div>
         </div>
     </div>
+    <div class="ui grid container segment">
+        <div class="row one column">
+            <div class="column">
+            <div class="ui message">
+                <div class="header">
+                    Alerta Produtos
+                </div>
+            </div>
+                <div class="ui three cards stackable">
+                    <?= (isset($table)) ? $table : '' ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     <!-- DIV QUE FECHA O TEMPLATE 'MENU' -->
     </div>
 </body>

@@ -17,7 +17,7 @@ if (isset($_POST) && !empty($_POST)) {
     $objDB->dbSelect($strTable, $SQL, $where);
     $numTotal = mysqli_num_rows($objDB->resultado);
     if ($numTotal > 0) {
-        $nome =  $objDB->mysqli_result($objDB->resultado, 0, "nome_produto");
+        $name =  $objDB->mysqli_result($objDB->resultado, 0, "nome_produto");
         $qtd =  $objDB->mysqli_result($objDB->resultado, 0, "qtd_produto");
         $desc =  $objDB->mysqli_result($objDB->resultado, 0, "descricao_produto");
         $tamanho =  $objDB->mysqli_result($objDB->resultado, 0, "tamanho_produto");
@@ -27,6 +27,7 @@ if (isset($_POST) && !empty($_POST)) {
         $cond =  $objDB->mysqli_result($objDB->resultado, 0, "condicao_produto");
         $cat =  $objDB->mysqli_result($objDB->resultado, 0, "categoria_produto");
         $status =  $objDB->mysqli_result($objDB->resultado, 0, "status_produto");
+        $qtdMin = $objDB->mysqli_result($objDB->resultado, 0, "quantidade_minima");
     }
 }
 ?>
@@ -72,7 +73,7 @@ if (isset($_POST) && !empty($_POST)) {
         <div class="row one column">
             <div class="column">
                 <div class="ui breadcrumb">
-                    <a class="section" href="dashboard.php">Dashboard</a>
+                    <a class="section" href="dashboard.php">Página Inicial</a>
                     <i class="right chevron icon divider"></i>
                     <a class="section" href="produtos.php">Produtos</a>
                     <i class="right arrow icon divider"></i>
@@ -91,7 +92,7 @@ if (isset($_POST) && !empty($_POST)) {
                     <div class="fields">
                         <div class="six wide field required">
                             <label>Nome do produto:</label>
-                            <input type="text" name="nome" placeholder="Cabeçote Dianteiro" value="<?= (isset($nome)) ? $nome : '' ?>">
+                            <input type="text" name="nome" placeholder="Cabeçote Dianteiro" value="<?= (isset($name)) ? $name : '' ?>">
                         </div>
                         <div class="four wide field required">
                             <label>Preço pago:</label>
@@ -120,6 +121,12 @@ if (isset($_POST) && !empty($_POST)) {
                         <div class="field required">
                             <label>Quantidade em estoque:</label>
                             <input type="text" name="qtd" placeholder="10" value="<?= (isset($qtd)) ? $qtd : '' ?>" onkeypress="$(this).mask('0#')">
+                        </div>
+                    </div>
+                    <div class="equal width fields">
+                        <div class="field required">
+                            <label>Quantidade Mínima:</label>
+                            <input type="text" name="qtdMin" placeholder="2" value="<?= (isset($qtdMin)) ? $qtdMin : '' ?>">
                         </div>
                         <div class="field required">
                             <label>Categoria:</label>

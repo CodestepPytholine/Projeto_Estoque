@@ -4,6 +4,7 @@ extract($_POST);
 /*
     REQUIRE INICIAIS.
 */
+require_once '../php/session_check.php';
 require_once '../php/db.class.php';
 require_once '../php/dbconnect.php';
 /*

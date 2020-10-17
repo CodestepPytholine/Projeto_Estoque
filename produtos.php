@@ -122,7 +122,7 @@ if ($numTotal > 0) {
         <div class="row one column">
             <div class="column">
                 <div class="ui breadcrumb">
-                    <a class="section" href="dashboard.php">Dashboard</a>
+                    <a class="section" href="dashboard.php">Página Inicial</a>
                     <i class="right arrow icon divider"></i>
                     <a class="section active">Produtos</a>
                 </div>
