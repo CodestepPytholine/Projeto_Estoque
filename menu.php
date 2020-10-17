@@ -7,6 +7,7 @@ require_once 'menu.php';
     CONEXÃO COM A BASE DE DADOS.
 */
 $cookie = base64_decode($_COOKIE['pf']);
+$nomeUser = base64_decode($_COOKIE['nm']);
 switch($cookie){
     case 1:
     case 2:
@@ -36,6 +37,27 @@ switch($cookie){
                 <a class=\"item\" href=\"produtos.php\">Gerenciamento</a>
             </div>
         </div>
+        <div class=\"item\">
+            <div class=\"header\">Abastecimento</div>
+            <div class=\"menu\">
+                <a class=\"item\" href=\"cadastro_abastecimento.php\">Cadastro</a>
+                <a class=\"item\" href=\"abastecimento.php\">Gerenciamento</a>
+            </div>
+        </div>
+        <div class=\"item\">
+            <div class=\"header\">Manutencao</div>
+            <div class=\"menu\">
+                <a class=\"item\" href=\"cadastro_manutencao.php\">Cadastro</a>
+                <a class=\"item\" href=\"manutencao.php\">Gerenciamento</a>
+            </div>
+        </div>
+        <div class=\"item\">
+            <div class=\"header\">Caminhões</div>
+            <div class=\"menu\">
+                <a class=\"item\" href=\"cadastro_caminhao.php\">Cadastro</a>
+                <a class=\"item\" href=\"caminhoes.php\">Gerenciamento</a>
+            </div>
+        </div>
         <div class=\"item\" >
             <div class=\"header\">Usuários</div>
             <div class=\"menu\">
@@ -57,9 +79,9 @@ switch($cookie){
                 </div>
                 <div class=\"menu right\">
                     <div id=\"displayMobile\" class=\"item header\">
-                        <i class=\"user circle icon large\"></i> Olá, Administrador
+                        <i class=\"user circle icon large\"></i> Olá, $nomeUser
                     </div>
-                    <a href=\"index.php\" class=\"item\">
+                    <a href=\"logout.php\" class=\"item\">
                         <i class=\"sign-out icon large\"></i> Sair
                     </a>
                 </div>
@@ -94,6 +116,20 @@ switch($cookie){
                 <a class=\"item\" href=\"produtos.php\">Gerenciamento</a>
             </div>
         </div>
+        <div class=\"item\">
+            <div class=\"header\">Abastecimento</div>
+            <div class=\"menu\">
+                <a class=\"item\" href=\"cadastro_abastecimento.php\">Cadastro</a>
+                <a class=\"item\" href=\"abastecimento.php\">Gerenciamento</a>
+            </div>
+        </div>
+        <div class=\"item\">
+            <div class=\"header\">Manutencao</div>
+            <div class=\"menu\">
+                <a class=\"item\" href=\"cadastro_manutencao.php\">Cadastro</a>
+                <a class=\"item\" href=\"manutencao.php\">Gerenciamento</a>
+            </div>
+        </div>
     </div>
     <!-- CONTEUDO DA PÁGINA -->
     <div class=\"pusher\">
@@ -108,9 +144,9 @@ switch($cookie){
                 </div>
                 <div class=\"menu right\">
                     <div id=\"displayMobile\" class=\"item header\">
-                        <i class=\"user circle icon large\"></i> Olá, Administrador
+                        <i class=\"user circle icon large\"></i> Olá, $nomeUser
                     </div>
-                    <a href=\"index.php\" class=\"item\">
+                    <a href=\"logout.php\" class=\"item\">
                         <i class=\"sign-out icon large\"></i> Sair
                     </a>
                 </div>

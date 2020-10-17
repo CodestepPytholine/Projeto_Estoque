@@ -48,7 +48,7 @@ class db
 		$rows = mysqli_num_rows($this->resultado);
 
 		$qtd_links = $rows / $qtd;
-
+		$table_lnk = "";
 		for ($i = 0; $i < $qtd_links; $i++) {
 			//$ss = ($i * $qtd);
 			$n_pagina = $i + 1;

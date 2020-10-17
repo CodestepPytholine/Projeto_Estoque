@@ -4,6 +4,7 @@ extract($_POST);
 /*
     REQUIRE INICIAIS.
 */
+require_once '../php/session_check.php';
 require_once '../php/db.class.php';
 require_once '../php/dbconnect.php';
 /*
@@ -28,6 +29,7 @@ if (isset($_POST['id']) && !empty($_POST['id']) ) {
     $cat = $_POST['categoria'];
     $cond = $_POST['condicao'];
     $desc = $_POST['desc'];
+    $qtdMin = $_POST['qtdMin'];
 
     $strTable = "produto";
     $strSQL = " nome_produto='$nome',
@@ -39,6 +41,7 @@ if (isset($_POST['id']) && !empty($_POST['id']) ) {
                 preco_produto='$preco',
                 marca_produto='$marca',
                 condicao_produto='$cond',
+                quantidade_minima='$qtdMin',
                 categoria_produto='$cat'";
 
     $strWhere = "id_produto = '$id' ";
@@ -64,8 +67,8 @@ if (isset($_POST['id']) && !empty($_POST['id']) ) {
     $cat = $_POST['categoria'];
     $cond = $_POST['condicao'];
     $desc = $_POST['desc'];
-
-    $strTable = "produto (nome_produto, qtd_produto, descricao_produto, status_produto, tamanho_produto, modelo_produto, preco_produto, marca_produto, categoria_produto, condicao_produto) ";
+    $qtdMin = $_POST['qtdMin'];
+    $strTable = "produto (nome_produto, qtd_produto, descricao_produto, status_produto, tamanho_produto, modelo_produto, preco_produto, marca_produto, categoria_produto, condicao_produto, quantidade_minima) ";
     $strSQL = " ('$nome',
                 '$qtd',
                 '$desc',
@@ -75,7 +78,8 @@ if (isset($_POST['id']) && !empty($_POST['id']) ) {
                 '$preco',
                 '$marca',
                 '$cat',
-                '$cond') ";
+                '$cond',
+                '$qtdMin') ";
 
     $objDB->dbInsert($strTable, $strSQL);
 

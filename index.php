@@ -22,9 +22,11 @@ if (!empty($_POST['login']) && !empty($_POST['senha']) && isset($_POST['login'])
     $objDB->dbSelect($tab, $campos, $condicao);
     $numTotal = mysqli_num_rows($objDB->resultado);
     $perfil =  base64_encode($objDB->mysqli_result($objDB->resultado, 0, "id_perfil"));
+    $nome =  base64_encode($objDB->mysqli_result($objDB->resultado, 0, "nome"));
 
     if ($numTotal > 0) {
         setcookie('pf',$perfil, (time() + (5 * 24 * 3600)));
+        setcookie('nm',$nome, (time() + (5 * 24 * 3600)));
         header('Location: dashboard.php');
     } else {
         $display = "style=\"display: block !important;\"" ;
