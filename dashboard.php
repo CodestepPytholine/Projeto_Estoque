@@ -17,10 +17,6 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     $objDB->dbSelectNo($strTable, $SQL);
     $numTotal = mysqli_num_rows($objDB->resultado);
     if ($numTotal > 0){
-        
-       
-    
-
     $table = "";
     /*
         LAÇO QUE ORGANIZA O RESULTADO DA QUERY,
@@ -53,6 +49,48 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
             
         }
     }
+
+    $strTable = "manutencao";
+    $SQL = "*";
+    $where = "LEFT JOIN caminhão on id_caminhão = caminhão_id_caminhão 
+            LEFT JOIN tp_manutencao on id_tpManutencao = tp_manutencao_id_tpManutencao";
+    $objDB->dbSelectNo($strTable, $SQL, $where);
+    $numTotal = mysqli_num_rows($objDB->resultado);
+    /*
+        VERIFICO SE A QUERY RETORNOU ALGUM RESULTADO.
+    */
+    if ($numTotal > 0) {
+        /*
+            INICIO MINHA TABELA COMO VAZIA.
+        */
+        $table_c = "";
+        /*
+            LAÇO QUE ORGANIZA O RESULTADO DA QUERY,
+            E MOSTRA NA TABELA.
+        */
+        for ($i = 0; $i < $numTotal; $i++) {
+            $km =  $objDB->mysqli_result($objDB->resultado, $i, "km_manutencao");
+
+            if ($km > 10000){
+                $table_c .=
+                "<div class=\"card\">
+                    <div class=\"content\">
+                        <div class=\"header\"></div>
+                        <div class=\"meta\"></div>
+                        <div class=\"description\">
+                            <div class=\"ui statistics\">
+                                <div class=\"statistic\">
+                                    <div class=\"value\">
+                                        $km
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";    
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -75,6 +113,8 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <link rel="icon" href="" type="image/x-icon">
     <!-- Framework Semantic UI -->
     <link rel="stylesheet" href="assets/theme/semantic.min.css">
+    <!-- Animated CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
     <!-- Style Custom -->
     <link rel="stylesheet" href="assets/css/style_custom_dashboard.css">
     <!-- Dependecias JS -->
@@ -82,12 +122,12 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
     <script src="assets/theme/semantic.min.js"></script>
     <!-- Script Custom -->
     <script src="assets/js/script_custom_dashboard.js"></script>
-    <?php
-    include('menu.php');
-    ?>
 </head>
 
 <body>
+    <?php
+        include('menu.php');
+    ?>
     <!-- PAINEL DE NAVEGAÇÃO EM TRILHA -->
     <div class="ui grid container segment">
         <div class="row one column">
@@ -99,28 +139,40 @@ $objDB->dbConnect($strServer, $strUser, $strPass, $strDB);
         </div>
     </div>
     <!-- FUNCÕES -->
-    <div class="ui grid container segment">
-        <div class="row one column">
-            <div class="column">
-            <div class="ui message">
-                <div class="header">
-                    Alerta Caminhões
-                </div>
-            </div>
-                <div class="ui three cards stackable">
-                    
+    <div class="ui grid container segment stackable">
+        <div class="row">
+            <div class="five wide column right floated">
+                <div class="ui message info animate__animated animate__headShake animate__infinite">
+                    <div class="header">
+                        Alerta de Caminhões
+                    </div>
+                    <p>
+                        Alguns Caminhões estão Kilometragem limite
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="ui grid container segment">
         <div class="row one column">
             <div class="column">
-            <div class="ui message">
-                <div class="header">
-                    Alerta Produtos
+                <div class="ui three cards stackable">
+                    <?= (isset($table_c)) ? $table_c : '' ?>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="six wide column right floated">
+                <div class="ui message info animate__animated animate__headShake animate__infinite">
+                    <div class="header">
+                        Alerta de Produtos
+                    </div>
+                    <p>
+                        Alguns produtos encontram-se em baixo estoque
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row one column">
+            <div class="column">
                 <div class="ui three cards stackable">
                     <?= (isset($table)) ? $table : '' ?>
                 </div>
